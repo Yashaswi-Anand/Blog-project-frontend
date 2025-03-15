@@ -3,18 +3,22 @@ import { Typography, IconButton, Box, Drawer, List, ListItem, ListItemText } fro
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 function HeaderTitle() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
 
-  // Responsive Breakpoints
   const isTabletOrMobile = useMediaQuery("(max-width:900px)");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const menuItems = ["Gadget", "AI Website", "Apps", "Tips & Trick"];
+  const handleNavigation = (path) => {
+    navigate(path);
+    setMobileOpen(false); // Close drawer on navigation (mobile)
+  };
 
   return (
     <Box
@@ -26,16 +30,16 @@ function HeaderTitle() {
         boxShadow: 2,
         backgroundColor: "#fff",
         width: "100%",
+        position: "fixed",
+        top: 0,
+        zIndex: 1000,
       }}
     >
-      {/* Container with max 78% width */}
       <Box sx={{ width: "78%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        {/* Logo */}
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer" }} onClick={() => handleNavigation('/')}>
           <span style={{ color: "#64b5f6" }}>Thetech</span>Khazna
         </Typography>
 
-        {/* Mobile/Tablet View: Hamburger Menu */}
         {isTabletOrMobile ? (
           <>
             <IconButton onClick={handleDrawerToggle}>
@@ -47,21 +51,27 @@ function HeaderTitle() {
               onClose={handleDrawerToggle}
               sx={{
                 "& .MuiDrawer-paper": {
-                  width: "80%", // Full-width drawer
+                  width: "80%",
                   display: "flex",
                   justifyContent: "center",
                 },
               }}
             >
-              {/* Centered Content with 78% Width */}
               <Box sx={{ width: "78%", margin: "0 auto" }}>
                 <List>
-                  {menuItems.map((item, index) => (
-                    <ListItem button key={index} onClick={handleDrawerToggle}>
-                      <ListItemText primary={item} />
-                    </ListItem>
-                  ))}
-                  <ListItem button>
+                  <ListItem button onClick={() => handleNavigation('/gadget')}>
+                    <ListItemText primary="Gadget" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/ai-website')}>
+                    <ListItemText primary="AI Website" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/apps')}>
+                    <ListItemText primary="Apps" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/tips')}>
+                    <ListItemText primary="Tips & Trick" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/profile')}>
                     <AccountCircleIcon sx={{ marginRight: "10px" }} />
                     <ListItemText primary="Profile" />
                   </ListItem>
@@ -70,14 +80,12 @@ function HeaderTitle() {
             </Drawer>
           </>
         ) : (
-          /* Desktop View: Inline Navigation */
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-            {menuItems.map((item, index) => (
-              <Typography key={index} variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }}>
-                {item}
-              </Typography>
-            ))}
-            <IconButton>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/gadget')}>Gadget</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/ai-website')}>AI Website</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/apps')}>Apps</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/tips')}>Tips & Trick</Typography>
+            <IconButton onClick={() => handleNavigation('/profile')}>
               <AccountCircleIcon />
             </IconButton>
           </Box>
