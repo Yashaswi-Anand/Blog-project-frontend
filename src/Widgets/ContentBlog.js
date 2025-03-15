@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Card, CardContent, CardMedia, Button, Box } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 const newsList = [
     {
@@ -18,7 +19,12 @@ const newsList = [
     },
 ];
 
+
 function ContentBlog({ content_type }) {
+    const navigate = useNavigate()
+    const handleNavigation = () => {
+        navigate(`/content-detail/${content_type}`);
+    };
     return (
         <div>
             {/* Heading */}
@@ -55,7 +61,10 @@ function ContentBlog({ content_type }) {
                             width: '100%',
                             height: { xs: 180, sm: 220, md: 250 }, // Responsive height
                             objectFit: 'cover',
+                            cursor: 'pointer',
+                            ':hover': { color: '#00bcd4' },
                         }}
+                        onClick={() => handleNavigation()}
                         image={news.img}
                         alt={news.title}
                     />
@@ -102,6 +111,7 @@ function ContentBlog({ content_type }) {
                             <Button
                                 variant="contained"
                                 size="small"
+                                onClick={() => handleNavigation()}
                                 sx={{
                                     backgroundColor: '#00bcd4',
                                     textTransform: 'none',
