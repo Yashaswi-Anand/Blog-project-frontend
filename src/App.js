@@ -1,23 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          The Tech Khazana
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          The Tech Khazana
-        </a>
-      </header>
+      <Home/>
     </div>
   );
 }
