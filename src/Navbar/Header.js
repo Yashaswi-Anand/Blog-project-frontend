@@ -8,14 +8,14 @@ const Header = () => {
       sx={{
         position: 'relative',
         minHeight: '1vh',
-        backgroundColor: '#d9e8ff', 
+        // backgroundColor: '#fff', 
         overflow: 'hidden',
         overflowX: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        padding: '7px'
+        // padding: '10px'
       }}
     >
       {/* Abstract Shapes */}

@@ -38,7 +38,7 @@
 }
 
 /* Header */
-.header-component {
+/* .header-component {
   display: flex;
   justify-content: space-between;
   width: 80%;
@@ -61,7 +61,7 @@
 .tab-button:hover {
   font-style: italic;
   text-decoration: underline;
-}
+} */
 
 /* Image Silder */
 .slider-container {
@@ -96,3 +96,75 @@
   border-radius: 5px;
   padding: 10px 100px;
 } 
+
+/* Main header container */
+.header-component {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo Section */
+.logo {
+  font-weight: bold;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Tab Button */
+.tab-button {
+  margin: 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.tab-button:hover {
+  color: #64b5f6;
+  text-decoration: u;
+}
+
+/* Account Button */
+.account-btn {
+  padding: 5px;
+}
+
+/* Responsive Media Queries */
+
+/* Tablet: Shrink gaps and font */
+@media (max-width: 900px) {
+  .nav-tabs {
+    gap: 12px;
+  }
+
+  .tab-button {
+    font-size: 14px;
+  }
+}
+
+/* Mobile: Stack or hide tabs */
+@media (max-width: 600px) {
+  .nav-tabs {
+    gap: 8px;
+  }
+
+  .tab-button {
+    display: none; /* Hide tabs for mobile */
+  }
+
+  .account-btn {
+    margin-left: auto;
+  }
+}

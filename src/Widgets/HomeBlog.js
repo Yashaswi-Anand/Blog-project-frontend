@@ -91,7 +91,7 @@ const HomeBlog = () => {
                     display: "flex",
                     flexDirection: "column",
                     gap: 2,
-                    marginTop: isMobile ? "20px" : "0px",
+                    marginTop: isMobile ? "20px" : "50px",
                 }}
             >
                 {stories.map((story, index) => (
@@ -113,13 +113,14 @@ const HomeBlog = () => {
                                 sx={{
                                     color: "#0b2545",
                                     cursor: "pointer",
+                                    textAlign: "left",
                                     ":hover": { color: "#007bff" },
-                                    fontSize: isMobile ? "12px" : "14px",
+                                    fontSize: "12px",
                                 }}
                             >
                                 {story.title}
                             </Typography>
-                            <Box display="flex" alignItems="center" mt={1} color="#999">
+                            <Box display="flex" justifyContent='end' alignItems="center" mt={1} color="#999">
                                 <IconButton size="small" sx={{ color: "#999" }}>
                                     <AccessTime fontSize="small" />
                                 </IconButton>
