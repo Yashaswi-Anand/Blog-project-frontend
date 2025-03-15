@@ -41,7 +41,7 @@
 .header-component {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 80%;
 }
 
 .cursor {
@@ -49,8 +49,8 @@
 }
 
 .tab-button {
-  color: #0b2545;
-  font-style: bold;
+  color: #007bff;
+  font-weight: 400;
   font-size: 18px;
   padding: 10px;
   cursor: pointer !important;
