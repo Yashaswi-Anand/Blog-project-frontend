@@ -1,17 +1,18 @@
 import React from 'react';
-import HeaderTitle from '../Navbar/HeaderTitle';
 import { Outlet } from 'react-router-dom';
+import Header from '../Navbar/Header';
+import Footer from '../Navbar/Footer';
 
 function Dashboard() {
     return (
         <div>
-            {/* Header always visible */}
-            <HeaderTitle />
+            <Header />
 
-            {/* Page content with margin from fixed header */}
             <div style={{ marginTop: "50px" }}>
                 <Outlet />
             </div>
+
+            <Footer/>
         </div>
     );
 }

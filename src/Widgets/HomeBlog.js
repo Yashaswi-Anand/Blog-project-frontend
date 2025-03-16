@@ -39,6 +39,7 @@ const HomeBlog = () => {
                 padding: isMobile ? "10px" : "20px",
                 margin: isMobile ? "0px 5%" : "0px 10%",
                 flexWrap: "wrap",
+                marginTop: isMobile ? "20%" : "4%",
             }}
         >
             {/* Left Side - Featured Story */}

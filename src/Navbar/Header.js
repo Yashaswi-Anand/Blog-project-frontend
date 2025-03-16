@@ -1,76 +1,98 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import HeaderTitle from './HeaderTitle';
+import React, { useState } from "react";
+import { Typography, IconButton, Box, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const isTabletOrMobile = useMediaQuery("(max-width:900px)");
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    setMobileOpen(false); // Close drawer on navigation (mobile)
+  };
+
   return (
     <Box
       sx={{
-        position: 'relative',
-        minHeight: '1vh',
-        // backgroundColor: '#fff', 
-        overflow: 'hidden',
-        overflowX: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        // padding: '10px'
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "10px 20px",
+        boxShadow: 2,
+        backgroundColor: "#fff",
+        width: "100%",
+        position: "fixed",
+        top: 0,
+        zIndex: 1000,
       }}
     >
-      {/* Abstract Shapes */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '10%',
-          left: '5%',
-          width: '250px',
-          height: '250px',
-          background: 'radial-gradient(circle, rgba(255,255,255,0.7), rgba(0,0,255,0.3))',
-          filter: 'blur(60px)',
-          borderRadius: '50%',
-        }}
-      />
-      {/* <Box
-        sx={{
-          position: 'absolute',
-          top: '20%',
-          right: '10%',
-          width: '200px',
-          height: '200px',
-          background: 'linear-gradient(135deg, rgba(0,0,255,0.4), rgba(255,255,255,0.2))',
-          filter: 'blur(50px)',
-          borderRadius: '20%',
-        }}
-      /> */}
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '15%',
-          left: '20%',
-          width: '300px',
-          height: '300px',
-          background: 'linear-gradient(135deg, rgba(0,0,255,0.3), rgba(255,255,255,0.3))',
-          filter: 'blur(70px)',
-          borderRadius: '30%',
-        }}
-      />
-      {/* <Box
-        sx={{
-          position: 'absolute',
-          bottom: '10%',
-          right: '5%',
-          width: '250px',
-          height: '250px',
-          background: 'radial-gradient(circle, rgba(0,0,255,0.2), rgba(255,255,255,0.4))',
-          filter: 'blur(60px)',
-          borderRadius: '50%',
-        }}
-      /> */}
+      <Box sx={{ width: "78%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer" }} onClick={() => handleNavigation('/')}>
+          <span style={{ color: "#64b5f6" }}>Thetech</span>Khazna
+        </Typography>
 
-      {/* Title Section */}
-      <HeaderTitle/>
+        {isTabletOrMobile ? (
+          <>
+            <IconButton onClick={handleDrawerToggle}>
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="right"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              sx={{
+                "& .MuiDrawer-paper": {
+                  width: "80%",
+                  display: "flex",
+                  justifyContent: "center",
+                },
+              }}
+            >
+              <Box sx={{ width: "78%", margin: "0 auto" }}>
+                <List>
+                  <ListItem button onClick={() => handleNavigation('/gadget')}>
+                    <ListItemText primary="Gadget" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/ai-website')}>
+                    <ListItemText primary="AI Website" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/apps')}>
+                    <ListItemText primary="Apps" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/tips')}>
+                    <ListItemText primary="Tips & Trick" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation('/profile')}>
+                    <AccountCircleIcon sx={{ marginRight: "10px" }} />
+                    <ListItemText primary="Profile" />
+                  </ListItem>
+                </List>
+              </Box>
+            </Drawer>
+          </>
+        ) : (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/gadget')}>Gadget</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/ai-website')}>AI Website</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/apps')}>Apps</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/tips')}>Tips & Trick</Typography>
+            <IconButton onClick={() => handleNavigation('/profile')}>
+              <AccountCircleIcon />
+            </IconButton>
+          </Box>
+        )}
+      </Box>
     </Box>
   );
-};
-export default Header
+}
+
+export default Header;
