@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard'; // Wrapper with Header
 import Home from './components/Home'; // Default home page
 import ContentPage from './components/ContentPage';
 import ContentDetailsPage from './components/ContentDetailsPage';
-
+import AddNewBlog from './components/AddNewBlog';
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
           <Route path="apps" element={<ContentPage />} />
           <Route path="tips" element={<ContentPage />} />
           <Route path="profile" element={<ContentPage />} />
+          <Route path="add-new-post" element={<AddNewBlog />} />
           <Route path="content-detail/:content_type" element={<ContentDetailsPage />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Route>

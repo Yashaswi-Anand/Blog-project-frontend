@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { Typography, IconButton, Box, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { Typography, IconButton, Box, Button, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
+import LoginPage from "../Widgets/LoginPage";
+import { Facebook, LinkedIn, Instagram, YouTube } from '@mui/icons-material';
+import ReplyIcon from '@mui/icons-material/Reply';
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const isTabletOrMobile = useMediaQuery("(max-width:900px)");
@@ -19,6 +23,16 @@ function Header() {
     navigate(path);
     setMobileOpen(false); // Close drawer on navigation (mobile)
   };
+
+  const onHandleClickLogin = () => {
+    setOpen(true)
+  };
+
+  const handleLogout = () => {
+    localStorage.setItem('isLoggedIn', false);
+    setMobileOpen(false);
+    navigate('/');
+  }
 
   return (
     <Box
@@ -35,9 +49,12 @@ function Header() {
         zIndex: 1000,
       }}
     >
+      <Box>
+        <LoginPage open={open} setOpen={setOpen} />
+      </Box>
       <Box sx={{ width: "78%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer" }} onClick={() => handleNavigation('/')}>
-          <span style={{ color: "#64b5f6" }}>Thetech</span>Khazna
+          <span style={{ color: "#00bcd4" }}>thetech</span>Khazana
         </Typography>
 
         {isTabletOrMobile ? (
@@ -53,29 +70,63 @@ function Header() {
                 "& .MuiDrawer-paper": {
                   width: "80%",
                   display: "flex",
-                  justifyContent: "center",
+                  justifyContent: "space-between",
                 },
               }}
             >
-              <Box sx={{ width: "78%", margin: "0 auto" }}>
-                <List>
-                  <ListItem button onClick={() => handleNavigation('/gadget')}>
-                    <ListItemText primary="Gadget" />
-                  </ListItem>
-                  <ListItem button onClick={() => handleNavigation('/ai-website')}>
-                    <ListItemText primary="AI Website" />
-                  </ListItem>
-                  <ListItem button onClick={() => handleNavigation('/apps')}>
-                    <ListItemText primary="Apps" />
-                  </ListItem>
-                  <ListItem button onClick={() => handleNavigation('/tips')}>
-                    <ListItemText primary="Tips & Trick" />
-                  </ListItem>
-                  <ListItem button onClick={() => handleNavigation('/profile')}>
-                    <AccountCircleIcon sx={{ marginRight: "10px" }} />
-                    <ListItemText primary="Profile" />
-                  </ListItem>
-                </List>
+              <Box>
+                <Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <IconButton sx={{ marginLeft: 2, marginTop: 1 }} onClick={handleDrawerToggle}>
+                      <ReplyIcon sx={{ color: 'black' }} />
+                    </IconButton>
+                    <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer", margin: 1, padding: '10px 10px 0px 10px' }} onClick={() => handleNavigation('/')}>
+                      <span style={{ color: "#00bcd4" }}>thetech</span>Khazana
+                    </Typography>
+                  </Box>
+                  <hr></hr>
+                </Box>
+                <Box sx={{ padding: '0px 10px' }}>
+                  <List>
+                    <ListItem button onClick={() => handleNavigation('/gadget')}>
+                      <ListItemText primary="Gadget" />
+                    </ListItem>
+                    <ListItem button onClick={() => handleNavigation('/ai-website')}>
+                      <ListItemText primary="AI Website" />
+                    </ListItem>
+                    <ListItem button onClick={() => handleNavigation('/apps')}>
+                      <ListItemText primary="Apps" />
+                    </ListItem>
+                    <ListItem button onClick={() => handleNavigation('/tips')}>
+                      <ListItemText primary="Tips & Trick" />
+                    </ListItem>
+                    {localStorage.getItem('isLoggedIn') === 'true' && <ListItem button onClick={() => handleNavigation('/add-new-post')}>
+                      <ListItemText primary="Add Post" />
+                    </ListItem>}
+                    {localStorage.getItem('isLoggedIn') === 'true'
+                      ? <ListItem sx={{ color: 'red', fontFamily: 'bold' }} onClick={() => handleLogout()}> <ListItemText fontFamily="bold" primary="Logout" /></ListItem>
+                      : <ListItem button onClick={onHandleClickLogin}>
+                        <AccountCircleIcon sx={{ marginRight: "10px" }} />
+                        <ListItemText primary="Profile" />
+                      </ListItem>}
+                  </List>
+                </Box>
+              </Box>
+
+              <Box>
+                <hr></hr>
+                <IconButton sx={{ color: '#1877F2', mx: 0.5 }}>
+                  <Facebook sx={{ fontSize: '25px' }} />
+                </IconButton>
+                <IconButton sx={{ color: '#000080', mx: 0.5 }}>
+                  <LinkedIn sx={{ fontSize: '25px' }} />
+                </IconButton>
+                <IconButton sx={{ color: 'gray', mx: 0.5 }}>
+                  <Instagram sx={{ fontSize: '25px' }} />
+                </IconButton>
+                <IconButton sx={{ color: 'red', mx: 0.5 }}>
+                  <YouTube sx={{ fontSize: '35px' }} />
+                </IconButton>
               </Box>
             </Drawer>
           </>
@@ -85,9 +136,12 @@ function Header() {
             <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/ai-website')}>AI Website</Typography>
             <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/apps')}>Apps</Typography>
             <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/tips')}>Tips & Trick</Typography>
-            <IconButton onClick={() => handleNavigation('/profile')}>
-              <AccountCircleIcon />
-            </IconButton>
+            {localStorage.getItem('isLoggedIn') && <Button variant="outlined" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/add-new-post')}><strong> + New Post </strong></Button>}
+            {localStorage.getItem('isLoggedIn') === 'true'
+              ? <Button variant="outlined" color="error" onClick={() => handleLogout()}> <strong>Logout</strong> </Button>
+              : <IconButton onClick={onHandleClickLogin}>
+                <AccountCircleIcon />
+              </IconButton>}
           </Box>
         )}
       </Box>
