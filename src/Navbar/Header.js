@@ -71,6 +71,8 @@ function Header() {
                   width: "80%",
                   display: "flex",
                   justifyContent: "space-between",
+                  borderTopLeftRadius: 20,
+                  borderBottomLeftRadius: 20
                 },
               }}
             >
