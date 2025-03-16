@@ -29,7 +29,7 @@ function Header() {
   };
 
   const handleLogout = () => {
-    localStorage.setItem('isLoggedIn', false);
+    localStorage.clear();
     setMobileOpen(false);
     navigate('/');
   }
@@ -91,16 +91,16 @@ function Header() {
                 <Box sx={{ padding: '0px 10px' }}>
                   <List>
                     <ListItem button onClick={() => handleNavigation('/gadget')}>
-                      <ListItemText primary="Gadget" />
+                      <ListItemText sx={{':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} primary="Gadget" />
                     </ListItem>
                     <ListItem button onClick={() => handleNavigation('/ai-website')}>
-                      <ListItemText primary="AI Website" />
+                      <ListItemText sx={{':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} primary="AI Website" />
                     </ListItem>
                     <ListItem button onClick={() => handleNavigation('/apps')}>
-                      <ListItemText primary="Apps" />
+                      <ListItemText sx={{':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} primary="Apps" />
                     </ListItem>
                     <ListItem button onClick={() => handleNavigation('/tips')}>
-                      <ListItemText primary="Tips & Trick" />
+                      <ListItemText sx={{':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} primary="Tips & Trick" />
                     </ListItem>
                     {localStorage.getItem('isLoggedIn') === 'true' && <ListItem button onClick={() => handleNavigation('/add-new-post')}>
                       <ListItemText primary="Add Post" />
@@ -134,10 +134,10 @@ function Header() {
           </>
         ) : (
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/gadget')}>Gadget</Typography>
-            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/ai-website')}>AI Website</Typography>
-            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/apps')}>Apps</Typography>
-            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/tips')}>Tips & Trick</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' } }} onClick={() => handleNavigation('/gadget')}>Gadget</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} onClick={() => handleNavigation('/ai-website')}>AI Website</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' } }} onClick={() => handleNavigation('/apps')}>Apps</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' } }} onClick={() => handleNavigation('/tips')}>Tips & Trick</Typography>
             {localStorage.getItem('isLoggedIn') && <Button variant="outlined" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/add-new-post')}><strong> + New Post </strong></Button>}
             {localStorage.getItem('isLoggedIn') === 'true'
               ? <Button variant="outlined" color="error" onClick={() => handleLogout()}> <strong>Logout</strong> </Button>

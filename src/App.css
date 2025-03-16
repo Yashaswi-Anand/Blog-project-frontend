@@ -41,31 +41,14 @@
   }
 }
 
-/* Header */
-/* .header-component {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
+.tab-content {
+  color: #000 !important;
 }
 
-.cursor {
-  cursor: pointer !important;
+.tab-content :hover {
+  color: #61dafb !important;
+  text-decoration: underline !important;
 }
-
-.tab-button {
-  color: #007bff;
-  font-weight: 400;
-  font-size: 18px;
-  padding: 10px;
-  cursor: pointer !important;
-  text-decoration: none;
-  display: inline;
-}
-
-.tab-button:hover {
-  font-style: italic;
-  text-decoration: underline;
-} */
 
 /* Image Silder */
 .slider-container {

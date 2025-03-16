@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Card, CardContent, CardMedia, Button, Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
+import getTabStringName from './Constant';
 
 const newsList = [
     {
@@ -27,18 +28,8 @@ function ContentBlog({ content_type }) {
     };
     return (
         <div>
-            {/* Heading */}
-            <Typography
-                variant="h4"
-                sx={{
-                    fontWeight: 'bold',
-                    color: '#00bcd4',
-                    mt: 1,
-                    mb: 3,
-                    fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }, // Responsive font size
-                }}
-            >
-                {content_type}
+            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#000', mb: 2, borderBottom: '3px solid #00bcd4', display: 'inline-block' }}>
+                {getTabStringName(content_type)}
             </Typography>
 
             {/* Cards */}
