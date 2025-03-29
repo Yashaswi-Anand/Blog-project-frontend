@@ -16,12 +16,12 @@ function App() {
           <Route index element={<Home />} />
           {/* Other pages */}
           <Route path="gadget" element={<ContentPage />} />
-          <Route path="ai-website" element={<ContentPage />} />
+          <Route path="ai_website" element={<ContentPage />} />
           <Route path="apps" element={<ContentPage />} />
           <Route path="tips" element={<ContentPage />} />
           <Route path="profile" element={<ContentPage />} />
           <Route path="add-new-post" element={<AddNewBlog />} />
-          <Route path="content-detail/:content_type" element={<ContentDetailsPage />} />
+          <Route path="content-detail/:content_type/:id" element={<ContentDetailsPage />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Route>
       </Routes>

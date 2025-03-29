@@ -1,35 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, Card, CardMedia, CardContent, IconButton, useMediaQuery, useTheme } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
-
-const stories = [
-    {
-        title: "‘Insta Maids - at Your Service in 15 mins’: Urban Company Enters the Quick Commerce...",
-        date: "15 MAR 2025",
-        image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
-    },
-    {
-        title: "Rapido Set To Launch Food Delivery Service To Take On Zomato, Swiggy",
-        date: "15 MAR 2025",
-        image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
-    },
-    {
-        title: "‘19,826 Km Roads Constructed So Far Under Bharatmala’: Nitin Gadkari",
-        date: "15 MAR 2025",
-        image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
-    },
-    {
-        title: "Ola Electric Shuts Down Punjab Showrooms Fearing Official Raids",
-        date: "15 MAR 2025",
-        image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
-    },
-];
+import { getBlogList } from "../utils/api";
+import { useNavigate } from "react-router-dom";
 
 const HomeBlog = () => {
+    const navigate = useNavigate();
+    const [blog_list, setBlogList] = useState([]);
+    const [activeblog, setActiveBlog] = useState({});
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // For screens <600px
     const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // For screens between 600px-900px
 
+    useEffect(() => {
+        (async () => {
+            const response = await getBlogList();
+            if (response?.data?.data) {
+                setBlogList(response?.data?.data);
+                setActiveBlog(response?.data?.data[0]);
+            }
+        })()
+    }, []);
+
+    const navigateBlogPage = (story) => {
+        navigate(`/content-detail/${story.category.toLowerCase()}/${story.id}`);
+    };
     return (
         <Box
             sx={{
@@ -50,13 +45,14 @@ const HomeBlog = () => {
                     </Typography>
                 </Box>
                 <Box sx={{ width: "100%", height: "2px", background: "#007bff", marginBottom: "20px" }} />
-                <Card sx={{ borderRadius: "10px", boxShadow: 3 }}>
-                    <Box sx={{ position: "relative" }}>
+                <Card sx={{ borderRadius: "10px", boxShadow: 3 }} onClick={() => navigateBlogPage(activeblog)}>
+                    <Box sx={{ position: "relative" }} >
                         <CardMedia
                             component="img"
                             height={isMobile ? "250" : "350"}
-                            image="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg"
+                            image={activeblog?.image}
                             alt="Featured Story"
+                            sx={{ cursor: "pointer" }}
                         />
                         <Typography
                             sx={{
@@ -70,16 +66,24 @@ const HomeBlog = () => {
                                 borderRadius: "5px",
                             }}
                         >
-                            STARTUP STORIES
+                            {activeblog?.category}
                         </Typography>
                     </Box>
                     <CardContent>
+                        <Box sx={{ display: "flex", justifyContent: "end", gap: 1 }}>
+                            <Typography
+                                variant="h6"
+                                sx={{ color: "#0b2545", fontSize: "12px" }}
+                            >
+                                {activeblog?.date}
+                            </Typography>
+                        </Box>
                         <Typography
                             variant="h6"
                             fontWeight="bold"
                             sx={{ color: "#0b2545", cursor: "pointer" }}
                         >
-                            Bangalore Tech Startup Appli Launches A Mobile App That Enables Gen Z Students To...
+                            {activeblog?.title}
                         </Typography>
                     </CardContent>
                 </Card>
@@ -95,16 +99,18 @@ const HomeBlog = () => {
                     marginTop: isMobile ? "20px" : "50px",
                 }}
             >
-                {stories.map((story, index) => (
-                    <Card key={index} sx={{ display: "flex", boxShadow: 1, borderRadius: "10px" }}>
+                {blog_list && blog_list.length > 0 && blog_list?.map((story, index) => (
+                    <Card key={index} sx={{ display: "flex", boxShadow: 1, borderRadius: "10px" }}
+                        onClick={() => navigateBlogPage(story)}>
                         <CardMedia
                             component="img"
                             sx={{
                                 width: isMobile ? 70 : 90,
                                 height: isMobile ? 60 : 80,
                                 borderRadius: "10px",
+                                cursor: "pointer"
                             }}
-                            image={story.image}
+                            image={story?.image}
                             alt={story.title}
                         />
                         <CardContent sx={{ padding: "5px 10px" }}>

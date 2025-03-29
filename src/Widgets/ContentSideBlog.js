@@ -1,15 +1,25 @@
-import React from 'react';
-import { Typography, List, ListItem, ListItemAvatar, ListItemText, Avatar, Divider } from '@mui/material';
-
-const stories = [
-  { title: "Bengaluru-based App Audition Connects Budding Actors To...", date: "MAR 15 2025", img: "https://via.placeholder.com/60" },
-  { title: '"This Is Your Sign": CRED CEO Kunal Shah Urges Bengaluru Startups To...', date: "MAR 15 2025", img: "https://via.placeholder.com/60" },
-  { title: "Bangalore Tech Startup Appli Launches A Mobile App That Enables Gen...", date: "MAR 15 2025", img: "https://via.placeholder.com/60" },
-  { title: "‘Insta Maids - at Your Service in 15 mins’: Urban Company Enter...", date: "MAR 15 2025", img: "https://via.placeholder.com/60" },
-  { title: "Rapido Set To Launch Food Delivery Service To Take On Zomato, Swiggy...", date: "MAR 15 2025", img: "https://via.placeholder.com/60" },
-];
+import React, { useEffect, useState } from 'react';
+import { Typography, List, ListItem, ListItemAvatar, ListItemText, Avatar, Divider, Box } from '@mui/material';
+import { mostRecentBlogs } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 function ContentSideBlog() {
+  const navigate = useNavigate();
+  const [latest_blog, setLatestBlog] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await mostRecentBlogs();
+      if (response?.data?.data) {
+        setLatestBlog(response?.data?.data);
+      }
+    })()
+  }, []);
+
+  const navigateBlogPage = (story) => {
+    navigate(`/content-detail/${story.category.toLowerCase()}/${story.id}`);
+  };
+
   return (
     <div>
       <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, borderBottom: '3px solid #00bcd4', display: 'inline-block' }}>
@@ -17,11 +27,11 @@ function ContentSideBlog() {
       </Typography>
 
       <List>
-        {stories.map((story, index) => (
-          <React.Fragment key={index}>
+        {latest_blog && latest_blog.length > 0 && latest_blog?.map((story, index) => (
+          <Box key={index} onClick={() => navigateBlogPage(story)}>
             <ListItem alignItems="flex-start" sx={{ cursor: 'pointer' }}>
               <ListItemAvatar>
-                <Avatar src={story.img} variant="rounded" sx={{ width: 60, height: 60 }} />
+                <Avatar src={story.image} variant="rounded" sx={{ width: 70, height: 70 }} />
               </ListItemAvatar>
               <ListItemText
                 primary={story.title}
@@ -33,8 +43,8 @@ function ContentSideBlog() {
                 sx={{ ml: 2 }}
               />
             </ListItem>
-            {index < stories.length - 1 && <Divider component="li" />}
-          </React.Fragment>
+            {index < latest_blog.length - 1 && <Divider component="li" />}
+          </Box>
         ))}
       </List>
     </div>

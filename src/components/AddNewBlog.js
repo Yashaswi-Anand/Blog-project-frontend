@@ -10,18 +10,19 @@ import {
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+// import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import TextEditor from "../Widgets/TextEditor";
+import { createNewBlog } from "../utils/api";
 
 const tagOptions = ["Gadget", "Apps", "AI Website", "Trick"];
 
 const AddNewBlog = () => {
     const [formData, setFormData] = useState({
         title: "",
-        tag: "",
+        category: "",
         description: "",
         images: [],
-        urls: [""],
+        urls: ["https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg"],
         sections: [{ short_title: "", large_description: "" }],
     });
 
@@ -32,10 +33,10 @@ const AddNewBlog = () => {
     };
 
     // Handle Image Upload
-    const handleImageUpload = (e) => {
-        const files = Array.from(e.target.files);
-        setFormData({ ...formData, images: files });
-    };
+    // const handleImageUpload = (e) => {
+    //     const files = Array.from(e.target.files);
+    //     setFormData({ ...formData, images: files });
+    // };
 
     // Handle URL Add
     const handleAddUrl = () => {
@@ -79,9 +80,10 @@ const AddNewBlog = () => {
     };
 
     // Handle Form Submit
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data Submitted:", formData);
+        await createNewBlog(formData);
         alert("Form submitted! Check console.");
     };
 
@@ -89,7 +91,7 @@ const AddNewBlog = () => {
     const handleReset = () => {
         setFormData({
             title: "",
-            tag: "",
+            category: "",
             description: "",
             images: [],
             urls: [""],
@@ -133,9 +135,9 @@ const AddNewBlog = () => {
                     <TextField
                         select
                         fullWidth
-                        label="Tag"
-                        name="tag"
-                        value={formData.tag}
+                        label="Category"
+                        name="category"
+                        value={formData.category}
                         onChange={handleChange}
                         margin="normal"
                         required
@@ -157,7 +159,7 @@ const AddNewBlog = () => {
                             ))}
                         </Box>
                     )}
-                    <Button
+                    {/* <Button
                         variant="contained"
                         component="label"
                         fullWidth
@@ -166,7 +168,7 @@ const AddNewBlog = () => {
                     >
                         Upload Images
                         <input type="file" hidden multiple accept="image/*" onChange={handleImageUpload} />
-                    </Button>
+                    </Button> */}
 
                     {/* URLs Section */}
                     <Typography variant="subtitle1" sx={{ mt: 2, fontWeight: "bold" }}>

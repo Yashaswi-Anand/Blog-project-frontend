@@ -1,30 +1,26 @@
-import React from "react";
-import { Box, Typography, Card, CardMedia, CardContent, Avatar, useMediaQuery } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Typography, Card, CardMedia, CardContent, useMediaQuery } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
-
-const articles = [
-    {
-        title: "‘Insta Maids - at Your Service in 15 mins’: Urban Company Enters the...",
-        author: "ANUSHREE AJAY",
-        date: "MAR 15 2025",
-        image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg?cs=srgb&dl=pexels-pok-rie-33563-724921.jpg&fm=jpg",
-    },
-    {
-        title: "Rapido Set To Launch Food Delivery Service To Take On Zomato, Swiggy",
-        author: "ISHITA GANGULY",
-        date: "MAR 15 2025",
-        image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg?cs=srgb&dl=pexels-pok-rie-33563-724921.jpg&fm=jpg",
-    },
-    {
-        title: "‘19,826 Km Roads Constructed So Far Under Bharatmala’: Nitin...",
-        author: "ISHITA GANGULY",
-        date: "MAR 15 2025",
-        image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg?cs=srgb&dl=pexels-pok-rie-33563-724921.jpg&fm=jpg",
-    },
-];
+import { mostRecentBlogs } from "../utils/api";
+import { useNavigate } from "react-router-dom";
 
 const LatestBlog = () => {
+    const navigate = useNavigate();
     const isMobile = useMediaQuery("(max-width:600px)");
+    const [latest_blog, setLatestBlog] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const response = await mostRecentBlogs();
+            if (response?.data?.data) {
+                setLatestBlog(response?.data?.data);
+            }
+        })()
+    }, []);
+
+    const navigateBlogPage = (story) => {
+        navigate(`/content-detail/${story.category.toLowerCase()}/${story.id}`);
+    };
 
     return (
         <Box sx={{ padding: "20px", margin: isMobile ? "0px 5%" : "0px 10%" }}>
@@ -44,7 +40,7 @@ const LatestBlog = () => {
                 gap: 3,
                 flexWrap: "wrap"
             }}>
-                {articles.map((article, index) => (
+                {latest_blog && latest_blog.length > 0 && latest_blog?.map((article, index) => (
                     <Card
                         key={index}
                         sx={{
@@ -52,9 +48,16 @@ const LatestBlog = () => {
                             borderRadius: "10px",
                             boxShadow: 3
                         }}
+                        onClick={() => navigateBlogPage(article)}
                     >
                         <Box sx={{ position: "relative" }}>
-                            <CardMedia component="img" height="180" image={article.image} alt={article.title} />
+                            <CardMedia
+                                component="img"
+                                height="180"
+                                image={article.image}
+                                alt={article.title}
+                                sx={{ cursor: "pointer" }}
+                            />
                             <Typography
                                 sx={{
                                     position: "absolute",
@@ -67,7 +70,7 @@ const LatestBlog = () => {
                                     borderRadius: "5px",
                                 }}
                             >
-                                {index + 1} TYPES
+                                {article.category}
                             </Typography>
                         </Box>
                         <CardContent>
@@ -76,12 +79,12 @@ const LatestBlog = () => {
                             </Typography>
                             <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Box display="flex" alignItems="center" mt={1}>
-                                    <Avatar sx={{ width: 20, height: 20, bgcolor: "#007bff", marginRight: "8px" }}>
-                                        {article.author[0]}
+                                    {/* <Avatar sx={{ width: 20, height: 20, bgcolor: "#007bff", marginRight: "8px" }}>
+                                        { "A"}
                                     </Avatar>
                                     <Typography variant="caption" fontWeight="bold">
-                                        By {article.author}
-                                    </Typography>
+                                        By { "Unknown"}
+                                    </Typography> */}
                                 </Box>
                                 <Box display="flex" alignItems="center" mt={1}>
                                     <AccessTime fontSize="small" sx={{ marginLeft: "8px", color: "#999" }} />

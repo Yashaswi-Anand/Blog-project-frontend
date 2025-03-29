@@ -93,7 +93,7 @@ function Header() {
                     <ListItem button onClick={() => handleNavigation('/gadget')}>
                       <ListItemText sx={{':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} primary="Gadget" />
                     </ListItem>
-                    <ListItem button onClick={() => handleNavigation('/ai-website')}>
+                    <ListItem button onClick={() => handleNavigation('/ai_website')}>
                       <ListItemText sx={{':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} primary="AI Website" />
                     </ListItem>
                     <ListItem button onClick={() => handleNavigation('/apps')}>
@@ -135,7 +135,7 @@ function Header() {
         ) : (
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
             <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' } }} onClick={() => handleNavigation('/gadget')}>Gadget</Typography>
-            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} onClick={() => handleNavigation('/ai-website')}>AI Website</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' }}} onClick={() => handleNavigation('/ai_website')}>AI Website</Typography>
             <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' } }} onClick={() => handleNavigation('/apps')}>Apps</Typography>
             <Typography variant="body1" sx={{ cursor: "pointer", fontWeight: 500, ':hover' : { color: '#00bcd4', textDecoration: 'underline' } }} onClick={() => handleNavigation('/tips')}>Tips & Trick</Typography>
             {localStorage.getItem('isLoggedIn') && <Button variant="outlined" sx={{ cursor: "pointer", fontWeight: 500 }} onClick={() => handleNavigation('/add-new-post')}><strong> + New Post </strong></Button>}

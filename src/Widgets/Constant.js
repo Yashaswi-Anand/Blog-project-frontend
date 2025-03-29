@@ -2,7 +2,7 @@ export default function getTabStringName(tab) {
     switch (tab) {
         case 'gadget':
             return "Gadget";
-        case 'ai-website':
+        case 'ai_website':
             return "AI Website";
         case 'apps':
             return "Apps";

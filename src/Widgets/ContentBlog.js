@@ -1,31 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Card, CardContent, CardMedia, Button, Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import getTabStringName from './Constant';
-
-const newsList = [
-    {
-        title: '"This Is Your Sign": CRED CEO Kunal Shah Urges Bengaluru Startups To Adopt AI Before It’s Late',
-        author: 'Ishita Ganguly',
-        date: '15 MAR 2025',
-        description: 'CRED\'s Kunal Shah has urged Bengaluru startups to embrace AI or risk falling behind. He claimed...',
-        img: 'https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg',
-    },
-    {
-        title: '‘Insta Maids - at Your Service in 15 mins’: Urban Company Enters the Quick Commerce Space With Rs 49 per Hour...',
-        author: 'Anushree Ajay',
-        date: '15 MAR 2025',
-        description: 'With a 15-minute maid booking, the home services provider Urban Company has entered the quick...',
-        img: 'https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg',
-    },
-];
+import { blogCategoryByCategory } from '../utils/api';
 
 
 function ContentBlog({ content_type }) {
     const navigate = useNavigate()
-    const handleNavigation = () => {
-        navigate(`/content-detail/${content_type}`);
+    const [content_blog, setContentBlog] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const response = await blogCategoryByCategory(content_type);
+            if (response?.data?.data) {
+                setContentBlog(response?.data?.data);
+            }
+        })()
+    }, [content_type]);
+
+    const handleNavigationToThatBlog = (data) => {
+        navigate(`/content-detail/${content_type}/${data.id}`);
     };
+
     return (
         <div>
             <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#000', mb: 2, borderBottom: '3px solid #00bcd4', display: 'inline-block' }}>
@@ -33,7 +29,7 @@ function ContentBlog({ content_type }) {
             </Typography>
 
             {/* Cards */}
-            {newsList?.map((news, index) => (
+            {content_blog && content_blog.length > 0 && content_blog?.map((news, index) => (
                 <Card
                     key={index}
                     sx={{
@@ -55,8 +51,8 @@ function ContentBlog({ content_type }) {
                             cursor: 'pointer',
                             ':hover': { color: '#00bcd4' },
                         }}
-                        onClick={() => handleNavigation()}
-                        image={news.img}
+                        onClick={() => handleNavigationToThatBlog(news)}
+                        image={news.image}
                         alt={news.title}
                     />
 
@@ -87,7 +83,8 @@ function ContentBlog({ content_type }) {
                                     fontSize: { xs: '0.75rem', sm: '0.875rem' }, // Responsive meta text
                                 }}
                             >
-                                By <b>{news.author}</b> &nbsp; {news.date}
+                                {/* By <b>{news.author}</b> &nbsp; {news.date} */}
+                                {news.date}
                             </Typography>
                             <Typography
                                 variant="body2"
@@ -102,7 +99,7 @@ function ContentBlog({ content_type }) {
                             <Button
                                 variant="contained"
                                 size="small"
-                                onClick={() => handleNavigation()}
+                                onClick={() => handleNavigationToThatBlog(news)}
                                 sx={{
                                     backgroundColor: '#00bcd4',
                                     textTransform: 'none',

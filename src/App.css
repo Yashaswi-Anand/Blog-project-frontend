@@ -155,3 +155,25 @@
     margin-left: auto;
   }
 }
+
+
+/* Constants */
+.display {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.w-100 {
+  width: 100%;
+}
