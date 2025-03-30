@@ -52,7 +52,13 @@ function Header() {
       <Box>
         <LoginPage open={open} setOpen={setOpen} />
       </Box>
-      <Box sx={{ width: "78%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <Box sx={{ 
+        width: isTabletOrMobile ? "109%" : "80%", 
+        display: "flex", 
+        justifyContent: "space-between", 
+        alignItems: "center", 
+        marginRight: isTabletOrMobile ? "30px" : "0%", 
+        }}>
         <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer" }} onClick={() => handleNavigation('/')}>
           <span style={{ color: "#00bcd4" }}>thetech</span>Khazana
         </Typography>

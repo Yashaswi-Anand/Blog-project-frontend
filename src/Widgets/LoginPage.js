@@ -16,10 +16,17 @@ function LoginPage({ open, setOpen }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Submitting login form', formData);
-        await loginUser(formData);
-        localStorage.setItem('isLoggedIn', true);
-        setOpen(false);
+        try {
+            const response = await loginUser(formData);
+            if (response.data.code === 200) {
+                localStorage.setItem('isLoggedIn', true);
+                setOpen(false);
+            } else {
+                alert(response.response.data.error);
+            }
+        } catch (error) {
+            alert("Unable to login. Please try again.");
+        }
     };
 
     return (

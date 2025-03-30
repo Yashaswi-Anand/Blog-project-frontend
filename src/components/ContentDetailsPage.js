@@ -14,7 +14,7 @@ const ContentDetailsPage = () => {
     })()
   }, []);
   return (
-    <Box sx={{ maxWidth: '70%', margin: "auto", padding: 2, marginTop: 10 }}>
+    <Box sx={{ margin: "5rem 10px 0px 10px" }}>
       {/* Header Section */}
       <Typography variant="h4" fontWeight="bold" gutterBottom>
         {contentBlog?.title}
@@ -24,12 +24,13 @@ const ContentDetailsPage = () => {
       </Typography> */}
 
       {/* Image Section */}
-      <Card sx={{ marginTop: 2, position: "relative" }}>
+      <Card sx={{ position: "relative"  }}>
         <CardMedia
           component="img"
           height="400"
           image={contentBlog?.image}
           alt={contentBlog?.category}
+          sx={{ objectFit: "unset" }}
         />
       </Card>
       <Typography variant="caption" display="block" textAlign="center" mt={1}>

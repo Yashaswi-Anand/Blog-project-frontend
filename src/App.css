@@ -128,6 +128,13 @@
   padding: 5px;
 }
 
+.header-section{
+  width: "80%";
+  display: "flex !important";
+  justify-content: "space-between !important";
+  align-items: "center"
+}
+
 /* Responsive Media Queries */
 
 /* Tablet: Shrink gaps and font */

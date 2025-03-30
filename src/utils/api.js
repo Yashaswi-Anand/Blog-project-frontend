@@ -7,6 +7,7 @@ export const loginUser = async (body_data) => {
         return response
     } catch (error) {
         console.log(error);
+        return error
     }
 }
 

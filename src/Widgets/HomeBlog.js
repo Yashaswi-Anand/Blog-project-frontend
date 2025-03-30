@@ -107,8 +107,8 @@ const HomeBlog = () => {
                         <CardMedia
                             component="img"
                             sx={{
-                                width: isMobile ? 70 : 90,
-                                height: isMobile ? 60 : 80,
+                                width: isMobile ? 100 : 90,
+                                height: isMobile ? 85 : 80,
                                 borderRadius: "10px",
                                 cursor: "pointer"
                             }}
