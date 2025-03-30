@@ -61,6 +61,7 @@ const AddNewBlog = () => {
         formData.description = content_description;
         await createNewBlog(formData);
         alert("Form submitted! Check console.");
+        handleReset();
     };
 
     // Handle Form Reset
