@@ -37,9 +37,13 @@ const ContentDetailsPage = () => {
       </Typography>
 
       {/* Content Section */}
-      <Typography variant="body1" mt={3}>
-        {contentBlog?.description}
-      </Typography>
+      <div
+        style={{
+          padding: '10px',
+          minHeight: '100px'
+        }}
+        dangerouslySetInnerHTML={{ __html:  contentBlog?.description }} // ✅ Renders HTML content from editor
+      />
     </Box>
   );
 };

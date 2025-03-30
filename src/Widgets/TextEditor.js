@@ -1,30 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import JoditEditor from 'jodit-react';
 
-const TextEditor = () => {
+const TextEditor = ({content_description, setContentDescription}) => {
     const editor = useRef(null);
-    const [content, setContent] = useState('');
 
     return (
-        <div style={{ margin: '50px 15%' }}>
-            <p><em>Using Editor Mode</em></p>
+        <div>
+            <p><b>Content Description</b></p>
             <JoditEditor
                 ref={editor}
-                value={content}
+                value={content_description}
                 tabIndex={1} // tabIndex of textarea
-                onBlur={newContent => setContent(newContent)} // Updates state when editor loses focus
+                onBlur={newContent => setContentDescription(newContent)} // Updates state when editor loses focus
                 onChange={() => { }} // Optional, you can omit or use for real-time update
             />
             
-            <h3>Output Content:</h3>
+            <h3>Preview</h3>
             <div 
                 style={{
                     padding: '10px',
-                    // border: '1px solid #ccc',
+                    border: '1px solid #ccc',
                     marginTop: '20px',
-                    minHeight: '100px'
+                    minHeight: '100px',
+                    borderRadius: '5px'
                 }}
-                dangerouslySetInnerHTML={{ __html: content }} // ✅ Renders HTML content from editor
+                dangerouslySetInnerHTML={{ __html: content_description }} // ✅ Renders HTML content from editor
             />
         </div>
     );

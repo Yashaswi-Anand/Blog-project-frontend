@@ -38,7 +38,7 @@ function ContentBlog({ content_type }) {
                         mb: 3,
                         boxShadow: 3,
                         borderRadius: 2,
-                        overflow: 'hidden', // Ensure rounded corners for image
+                        overflow: 'hidden',
                     }}
                 >
                     {/* Image on top */}
@@ -86,16 +86,12 @@ function ContentBlog({ content_type }) {
                                 {/* By <b>{news.author}</b> &nbsp; {news.date} */}
                                 {news.date}
                             </Typography>
-                            <Typography
-                                variant="body2"
-                                color="text.secondary"
-                                sx={{
-                                    mb: 2,
-                                    fontSize: { xs: '0.8rem', sm: '0.9rem' }, // Responsive description
+                            <div
+                                style={{
+                                    minHeight: '50px'
                                 }}
-                            >
-                                {news.description}
-                            </Typography>
+                                dangerouslySetInnerHTML={{ __html: news?.description.substring(0, 200) + '...' }} // ✅ Renders HTML content from editor
+                            />
                             <Button
                                 variant="contained"
                                 size="small"

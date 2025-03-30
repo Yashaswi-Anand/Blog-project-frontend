@@ -16,8 +16,10 @@ const HomeBlog = () => {
         (async () => {
             const response = await getBlogList();
             if (response?.data?.data) {
-                setBlogList(response?.data?.data);
                 setActiveBlog(response?.data?.data[0]);
+                const data = response?.data?.data;
+                data.shift();
+                setBlogList(data);   
             }
         })()
     }, []);
