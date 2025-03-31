@@ -5,6 +5,10 @@ import Home from './components/Home'; // Default home page
 import ContentPage from './components/ContentPage';
 import ContentDetailsPage from './components/ContentDetailsPage';
 import AddNewBlog from './components/AddNewBlog';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsAndConditions from './components/TermsAndConditions';
+import AboutUs from './components/AboutUs';
+import ContactUs from './components/ContactUs';
 
 function App() {
   return (
@@ -19,10 +23,13 @@ function App() {
           <Route path="ai_website" element={<ContentPage />} />
           <Route path="apps" element={<ContentPage />} />
           <Route path="tips" element={<ContentPage />} />
-          <Route path="profile" element={<ContentPage />} />
           <Route path="add-new-post" element={<AddNewBlog />} />
           <Route path="content-detail/:content_type/:id" element={<ContentDetailsPage />} />
-          <Route path="*" element={<div>404 Not Found</div>} />
+          <Route path="about-us" element={<AboutUs />} />
+          <Route path="contact-us" element={<ContactUs />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-conditions" element={<TermsAndConditions />} />
+          <Route path="*" element={<div>404 Page Not Found</div>} />
         </Route>
       </Routes>
     </BrowserRouter>

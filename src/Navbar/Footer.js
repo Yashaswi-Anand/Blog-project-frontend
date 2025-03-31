@@ -1,9 +1,21 @@
 import React from 'react';
 import { Box, Typography, Grid, Link, IconButton, useMediaQuery } from '@mui/material';
 import { Facebook, LinkedIn, Instagram, YouTube } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 export default function Footer() {
-    const isMobile = useMediaQuery("(max-width:600px)");
+  const navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width:600px)");
+  const footerLinks  = ['About Us', 'Contact Us', 'Privacy Policy', 'Terms & Conditions']
+ 
+  const onHandleNavigate = (path) => {
+    if (path === 'About Us') path = '/about-us';
+    if (path === 'Contact Us') path = '/contact-us';
+    if (path === 'Privacy Policy') path = '/privacy-policy';
+    if (path === 'Terms & Conditions') path = '/terms-conditions';
+    navigate(path);
+  }
+
   return (
     <Box sx={{ 
         backgroundColor: '#000', 
@@ -59,9 +71,9 @@ export default function Footer() {
           >
             ABOUT
           </Typography>
-          {['About Us', 'Contact Us', 'Join Our Team'].map((item, index) => (
-            <Typography key={index} variant="body2" sx={{ color: '#ccc', mb: 1 }}>
-              <Link href="#" underline="none" sx={{ color: '#ccc', '&:hover': { color: '#fff' } }}>
+          {footerLinks.map((item, index) => (
+            <Typography key={index} variant="body2" sx={{ color: '#ccc', mb: 1, '&:hover': { color: '#fff' }, cursor: 'pointer' }}>
+              <Link onClick={() => onHandleNavigate(item)} underline="none" sx={{ color: '#ccc', '&:hover': { color: '#fff' } }}>
                 {item}
               </Link>
             </Typography>
