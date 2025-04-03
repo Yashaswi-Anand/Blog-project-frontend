@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Card, CardMedia, CardContent, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, Card, CardMedia, useMediaQuery, useTheme } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
 import { getBlogList } from "../utils/api";
 import { useNavigate } from "react-router-dom";
@@ -110,34 +110,31 @@ const HomeBlog = () => {
                             component="img"
                             sx={{
                                 width: isMobile ? 100 : 90,
-                                height: isMobile ? 85 : 80,
-                                borderRadius: "10px",
+                                height: isMobile ? 85 : 85,
+                                borderRadius: "8px",
                                 cursor: "pointer"
                             }}
                             image={story?.image}
                             alt={story.title}
                         />
-                        <CardContent sx={{ padding: "5px 10px" }}>
+                        <Box sx={{ padding: 0, margin: 0 }}>
                             <Typography
                                 variant="body2"
                                 fontWeight="bold"
                                 sx={{
-                                    color: "#0b2545",
-                                    cursor: "pointer",
-                                    textAlign: "left",
-                                    ":hover": { color: "#007bff" },
-                                    fontSize: "12px",
+                                    padding: '5px 0px 0px 5px',
                                 }}
                             >
                                 {story.title}
                             </Typography>
-                            <Box display="flex" justifyContent='end' alignItems="center" mt={1} color="#999">
-                                <IconButton size="small" sx={{ color: "#999" }}>
-                                    <AccessTime fontSize="small" />
-                                </IconButton>
-                                <Typography variant="caption">{story.date}</Typography>
+                            <p style={{ fontSize: "13px", textAlign: "left", padding: '0px 1px 0px 5px', margin:0 }}>{(story.short_description).substring(0, 60)+ "..."}</p>
+                            <Box sx={{ display: "flex", justifyContent: "end", padding: '0px 5px' }}>
+                                <AccessTime sx={{ marginLeft: "8px", color: "#999", fontSize: "14px", marginTop: "2px" }} />
+                                <Typography variant="caption" sx={{ color: "#999", marginLeft: "4px" }}>
+                                    {moment(story.created_at).format("MMM DD, YYYY")}
+                                </Typography>
                             </Box>
-                        </CardContent>
+                        </Box>
                     </Card>
                 ))}
             </Box>

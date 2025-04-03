@@ -3,6 +3,7 @@ import { Box, Typography, Card, CardMedia, CardContent, useMediaQuery } from "@m
 import { AccessTime } from "@mui/icons-material";
 import { mostRecentBlogs } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const LatestBlog = () => {
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ const LatestBlog = () => {
                 display: "flex",
                 flexDirection: isMobile ? "column" : "row",
                 justifyContent: isMobile ? "center" : "space-between",
-                gap: 3,
+                gap: 2,
                 flexWrap: "wrap"
             }}>
                 {latest_blog && latest_blog.length > 0 && latest_blog?.map((article, index) => (
@@ -63,7 +64,7 @@ const LatestBlog = () => {
                                     position: "absolute",
                                     bottom: 10,
                                     left: 10,
-                                    background: "#007bff",
+                                    background: "gray",
                                     color: "#fff",
                                     fontSize: "12px",
                                     padding: "4px 8px",
@@ -74,24 +75,21 @@ const LatestBlog = () => {
                             </Typography>
                         </Box>
                         <CardContent>
+                            <Box sx={{ display: "flex", justifyContent: "end" }}>
+                                <AccessTime sx={{ marginLeft: "8px", color: "#999", fontSize: "16px" }} />
+                                <Typography variant="caption" sx={{ color: "#999", marginLeft: "4px" }}>
+                                    {moment(article.created_at).format("MMM DD, YYYY")}
+                                </Typography>
+                            </Box>
                             <Typography variant="body1" fontWeight="bold" sx={{ color: "#007bff", cursor: "pointer" }}>
                                 {article.title}
                             </Typography>
-                            <Box display="flex" justifyContent="space-between" mt={1}>
-                                <Box display="flex" alignItems="center" mt={1}>
-                                    {/* <Avatar sx={{ width: 20, height: 20, bgcolor: "#007bff", marginRight: "8px" }}>
-                                        { "A"}
-                                    </Avatar>
-                                    <Typography variant="caption" fontWeight="bold">
-                                        By { "Unknown"}
-                                    </Typography> */}
-                                </Box>
-                                <Box display="flex" alignItems="center" mt={1}>
-                                    <AccessTime fontSize="small" sx={{ marginLeft: "8px", color: "#999" }} />
-                                    <Typography variant="caption" sx={{ color: "#999", marginLeft: "4px" }}>
-                                        {article.date}
-                                    </Typography>
-                                </Box>
+                            <Box sx={{
+                                cursor: "pointer",
+                                color: "inherit",
+                                ":hover": { color: "#007bff" }
+                            }}>
+                                {(article.short_description).substring(0, 40) + "..."}
                             </Box>
                         </CardContent>
                     </Card>
