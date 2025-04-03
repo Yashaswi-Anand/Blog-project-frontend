@@ -17,10 +17,9 @@ const AddNewBlog = () => {
     const [formData, setFormData] = useState({
         title: "",
         category: "",
+        short_description: "",
         description: "",
         link: ""
-        // images: [],
-        // urls: ["https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg"]
     });
     const [content_description, setContentDescription] = useState("");
 
@@ -69,10 +68,9 @@ const AddNewBlog = () => {
         setFormData({
             title: "",
             category: "",
+            short_description: "",
             description: "",
             link: ""
-            // images: [],
-            // urls: [""]
         });
         setContentDescription("");
     };
@@ -100,8 +98,8 @@ const AddNewBlog = () => {
                     <TextField
                         fullWidth
                         label="Short Description"
-                        name="description"
-                        value={formData.description}
+                        name="short_description"
+                        value={formData.short_description}
                         onChange={handleChange}
                         margin="normal"
                         multiline
@@ -136,56 +134,6 @@ const AddNewBlog = () => {
                         margin="normal"
                         required
                     />
-
-                    {/* Image Upload */}
-                    {/* {formData.images.length > 0 && (
-                        <Box sx={{ mt: 1 }}>
-                            {formData.images.map((file, index) => (
-                                <Typography key={index} variant="body2">
-                                    {file.name}
-                                </Typography>
-                            ))}
-                        </Box>
-                    )} */}
-                    {/* <Button
-                        variant="contained"
-                        component="label"
-                        fullWidth
-                        sx={{ mt: 2 }}
-                        startIcon={<CloudUploadIcon />}
-                    >
-                        Upload Images
-                        <input type="file" hidden multiple accept="image/*" onChange={handleImageUpload} />
-                    </Button> */}
-
-                    {/* URLs Section */}
-                    {/* <Box>
-                        <Typography variant="subtitle1" sx={{ mt: 2, fontWeight: "bold" }}>
-                            Add URLs:
-                        </Typography>
-                        {formData.urls.map((url, index) => (
-                            <Box key={index} display="flex" alignItems="center" gap={1} sx={{ mt: 1 }}>
-                                <TextField
-                                    fullWidth
-                                    label={`URL ${index + 1}`}
-                                    value={url}
-                                    onChange={(e) => handleUrlChange(index, e.target.value)}
-                                    required
-                                />
-                                <IconButton onClick={() => handleRemoveUrl(index)} color="error" disabled={formData.urls.length === 1}>
-                                    <RemoveCircleIcon />
-                                </IconButton>
-                            </Box>
-                        ))}
-                        <Button
-                            variant="outlined"
-                            startIcon={<AddCircleIcon />}
-                            sx={{ mt: 1 }}
-                            onClick={handleAddUrl}
-                        >
-                            Add More URL
-                        </Button>
-                    </Box> */}
 
                     {/* Dynamic Description */}
                     <Box sx={{ p: 2, border: '1px solid #ccc', borderRadius: 2, mt: 2 }}>

@@ -3,6 +3,7 @@ import { Box, Typography, Card, CardMedia, CardContent, IconButton, useMediaQuer
 import { AccessTime } from "@mui/icons-material";
 import { getBlogList } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import moment from "moment/moment";
 
 const HomeBlog = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const HomeBlog = () => {
                 setActiveBlog(response?.data?.data[0]);
                 const data = response?.data?.data;
                 data.shift();
-                setBlogList(data);   
+                setBlogList(data);
             }
         })()
     }, []);
@@ -71,15 +72,7 @@ const HomeBlog = () => {
                             {activeblog?.category}
                         </Typography>
                     </Box>
-                    <CardContent>
-                        <Box sx={{ display: "flex", justifyContent: "end", gap: 1 }}>
-                            <Typography
-                                variant="h6"
-                                sx={{ color: "#0b2545", fontSize: "12px" }}
-                            >
-                                {activeblog?.date}
-                            </Typography>
-                        </Box>
+                    <Box sx={{ display: "flex", justifyContent: "space-between", width: "95%", padding: "10px 20px 0px 20px" }}>
                         <Typography
                             variant="h6"
                             fontWeight="bold"
@@ -87,7 +80,16 @@ const HomeBlog = () => {
                         >
                             {activeblog?.title}
                         </Typography>
-                    </CardContent>
+                        <Typography
+                            variant="h6"
+                            sx={{ color: "gray", fontSize: "14px" }}
+                        >
+                            {moment(activeblog?.created_at).format("MMM DD, YYYY")}
+                        </Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", width: "95%", padding: '0px 20px' }}>
+                        <p>{activeblog?.short_description}</p>
+                    </Box>
                 </Card>
             </Box>
 
