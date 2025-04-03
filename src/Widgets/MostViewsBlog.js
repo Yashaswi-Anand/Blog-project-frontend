@@ -66,7 +66,7 @@ const MostViewsBlog = () => {
                                     position: "absolute",
                                     bottom: 10,
                                     left: 10,
-                                    background: "#007bff",
+                                    background: "gray",
                                     color: "#fff",
                                     fontSize: "12px",
                                     padding: "4px 8px",

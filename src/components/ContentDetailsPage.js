@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Card, CardMedia } from "@mui/material";
+import { Box, Typography, Card, CardMedia, useTheme, useMediaQuery } from "@mui/material";
 import { getBlogById } from "../utils/api";
 
 const ContentDetailsPage = () => {
   const [contentBlog, setContentBlog] = useState([]);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   useEffect(() => {
     (async () => {
       const blog_id = window.location.pathname.split("/").pop();
@@ -14,7 +17,7 @@ const ContentDetailsPage = () => {
     })()
   }, []);
   return (
-    <Box sx={{ margin: "5rem 10px 0px 10px" }}>
+    <Box sx={{ margin: isMobile ? "5rem 1rem" : "5rem 10rem" }}>
       {/* Header Section */}
       <Typography variant="h4" fontWeight="bold" gutterBottom>
         {contentBlog?.title}

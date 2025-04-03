@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, Typography, Grid, Link, IconButton, useMediaQuery } from '@mui/material';
+import { Box, Typography, Grid, Link, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import { Facebook, LinkedIn, Instagram, YouTube } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 export default function Footer() {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const footerLinks  = ['About Us', 'Contact Us', 'Privacy Policy', 'Terms & Conditions']
  
   const onHandleNavigate = (path) => {
@@ -21,7 +22,7 @@ export default function Footer() {
         backgroundColor: '#000', 
         color: '#fff', 
         py: 5, 
-        px: { xs: 5, sm: 5, md: 10 },
+        // px: { xs: 5, sm: 5, md: 10 },
         display: 'flex',
         justifyContent: 'center'}}>
 
