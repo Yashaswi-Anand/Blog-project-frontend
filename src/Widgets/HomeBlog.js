@@ -127,7 +127,7 @@ const HomeBlog = () => {
                             >
                                 {story.title}
                             </Typography>
-                            <p style={{ fontSize: "13px", textAlign: "left", padding: '0px 1px 0px 5px', margin:0 }}>{(story.short_description).substring(0, 60)+ "..."}</p>
+                            <p style={{ fontSize: "13px", textAlign: "left", padding: '0px 1px 0px 5px', margin:0 }}>{story?.short_description?.substring(0, 60) + "..."}</p>
                             <Box sx={{ display: "flex", justifyContent: "end", padding: '0px 5px' }}>
                                 <AccessTime sx={{ marginLeft: "8px", color: "#999", fontSize: "14px", marginTop: "2px" }} />
                                 <Typography variant="caption" sx={{ color: "#999", marginLeft: "4px" }}>
