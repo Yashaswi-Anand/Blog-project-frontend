@@ -1,14 +1,14 @@
 import React from 'react';
-import { Box, Typography, Grid, Link, IconButton, useMediaQuery, useTheme } from '@mui/material';
-import { Facebook, LinkedIn, Instagram, YouTube } from '@mui/icons-material';
+import { Box, Typography, Grid, Link, useMediaQuery, useTheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import SocialOnFooter from '../Widgets/fancyWidgets/SocialOnFooter';
 
 export default function Footer() {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const footerLinks  = ['About Us', 'Contact Us', 'Privacy Policy', 'Terms & Conditions']
- 
+  const footerLinks = ['About Us', 'Contact Us', 'Privacy Policy', 'Terms & Conditions']
+
   const onHandleNavigate = (path) => {
     if (path === 'About Us') path = '/about-us';
     if (path === 'Contact Us') path = '/contact-us';
@@ -18,16 +18,17 @@ export default function Footer() {
   }
 
   return (
-    <Box sx={{ 
-        backgroundColor: '#000', 
-        color: '#fff', 
-        py: 5, 
-        // px: { xs: 5, sm: 5, md: 10 },
-        display: 'flex',
-        justifyContent: 'center'}}>
+    <Box sx={{
+      backgroundColor: '#000',
+      color: '#fff',
+      py: 5,
+      // px: { xs: 5, sm: 5, md: 10 },
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
 
-      <Grid container spacing={3} justifyContent="space-between" style={{  width: isMobile ? '100%': '75%'}}>
-        
+      <Grid container spacing={3} justifyContent="space-between" style={{ width: isMobile ? '100%' : '75%' }}>
+
         {/* Column 1 - Logo & Description */}
         <Grid item xs={12} sm={4}>
           <Typography
@@ -42,21 +43,10 @@ export default function Footer() {
             thetech<span style={{ color: 'white' }}>khazana</span>
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, color: '#ccc' }}>
-            All about Gadget, AI tools, Apps, Tips & Tricks and more. 
+            All about Gadget, AI tools, Apps, Tips & Tricks and more.
           </Typography>
-          <Box>
-            <IconButton sx={{ color: '#ccc', mx: 0.5 }}>
-              <Facebook sx={{ fontSize: isMobile ? '30px' : '40px'}}/>
-            </IconButton>
-            <IconButton sx={{ color: '#ccc', mx: 0.5 }}>
-              <LinkedIn sx={{ fontSize: isMobile ? '30px' : '40px'}}/>
-            </IconButton>
-            <IconButton sx={{ color: '#ccc', mx: 0.5 }}>
-              <Instagram sx={{ fontSize: isMobile ? '30px' : '40px'}}/>
-            </IconButton>
-            <IconButton sx={{ color: '#ccc', mx: 0.5 }}>
-              <YouTube sx={{ fontSize: isMobile ? '30px' : '50px'}}/>
-            </IconButton>
+          <Box >
+            <SocialOnFooter />
           </Box>
         </Grid>
 
