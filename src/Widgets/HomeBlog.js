@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Card, CardMedia, useMediaQuery, useTheme } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
-import { getBlogList } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 
-const HomeBlog = () => {
+const HomeBlog = ({blog_list}) => {
     const navigate = useNavigate();
-    const [blog_list, setBlogList] = useState([]);
     const [activeblog, setActiveBlog] = useState({});
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // For screens <600px
@@ -15,15 +13,14 @@ const HomeBlog = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await getBlogList();
-            if (response?.data?.data) {
-                setActiveBlog(response?.data?.data[0]);
-                const data = response?.data?.data;
-                data.shift();
-                setBlogList(data);
+            if (blog_list.length > 0) {
+                setActiveBlog(blog_list[0]);
+                setTimeout(() =>{
+                    blog_list.shift();
+                }, 0);
             }
         })()
-    }, []);
+    }, [blog_list]);
 
     const navigateBlogPage = (story) => {
         navigate(`/content-detail/${story.category.toLowerCase()}/${story.id}`);

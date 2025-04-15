@@ -30,6 +30,7 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="terms-conditions" element={<TermsAndConditions />} />
           <Route path="*" element={<div>404 Page Not Found</div>} />
+          <Route path="/not-found-page" element={<div>404 Page Not Found</div>} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -44,7 +44,7 @@ export const updateExsistingBlog = async (body_data, blog_id) => {
         const response = await api.post(`/project/update_blog/:${blog_id}`, body_data);
         return response
     } catch (error) {
-        console.log(error);
+        return error
     }
 }
 
@@ -53,7 +53,7 @@ export const getBlogById = async (blog_id) => {
         const response = await api.get(`/project/get_blog/${blog_id}`);
         return response
     } catch (error) {
-        console.log(error);
+        return error
     }
 }
 

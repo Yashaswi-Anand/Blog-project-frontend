@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Card, CardMedia, useTheme, useMediaQuery } from "@mui/material";
 import { getBlogById } from "../utils/api";
+import { useNavigate } from "react-router-dom";
 
 const ContentDetailsPage = () => {
+  const navigate = useNavigate();
   const [contentBlog, setContentBlog] = useState([]);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     (async () => {
-      const blog_id = window.location.pathname.split("/").pop();
-      const response = await getBlogById(blog_id);
-      if (response?.data?.data) {
-        setContentBlog(response?.data?.data);
+      try {
+        const blog_id = window.location.pathname.split("/").pop();
+        const response = await getBlogById(blog_id);
+        if (response?.data?.data) {
+          setContentBlog(response?.data?.data);
+        } else if (response.data.code === 404) {
+          navigate("/not-found-page");
+        }
+      } catch (error) {
+        console.log(error);
       }
     })()
   }, []);
@@ -27,7 +35,7 @@ const ContentDetailsPage = () => {
       </Typography> */}
 
       {/* Image Section */}
-      <Card sx={{ position: "relative"  }}>
+      <Card sx={{ position: "relative" }}>
         <CardMedia
           component="img"
           height="400"
@@ -46,7 +54,7 @@ const ContentDetailsPage = () => {
           padding: '10px',
           minHeight: '100px'
         }}
-        dangerouslySetInnerHTML={{ __html:  contentBlog?.description }} // ✅ Renders HTML content from editor
+        dangerouslySetInnerHTML={{ __html: contentBlog?.description }} // ✅ Renders HTML content from editor
       />
     </Box>
   );
