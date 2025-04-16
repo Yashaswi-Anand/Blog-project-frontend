@@ -8,11 +8,10 @@ const ContentDetailsPage = () => {
   const [contentBlog, setContentBlog] = useState([]);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
+  const blog_id = window.location.pathname.split("/").pop();
   useEffect(() => {
     (async () => {
       try {
-        const blog_id = window.location.pathname.split("/").pop();
         const response = await getBlogById(blog_id);
         if (response?.data?.data) {
           setContentBlog(response?.data?.data);
@@ -23,7 +22,7 @@ const ContentDetailsPage = () => {
         console.log(error);
       }
     })()
-  }, []);
+  }, [blog_id, navigate]);
   return (
     <Box sx={{ margin: isMobile ? "5rem 1rem" : "5rem 10rem" }}>
       {/* Header Section */}
