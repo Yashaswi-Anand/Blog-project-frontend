@@ -4,7 +4,7 @@ import { AccessTime } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 
-const HomeBlog = ({blog_list}) => {
+const HomeBlog = ({ blog_list }) => {
     const navigate = useNavigate();
     const [activeblog, setActiveBlog] = useState({});
     const theme = useTheme();
@@ -15,7 +15,7 @@ const HomeBlog = ({blog_list}) => {
         (async () => {
             if (blog_list.length > 0) {
                 setActiveBlog(blog_list[0]);
-                setTimeout(() =>{
+                setTimeout(() => {
                     blog_list.shift();
                 }, 0);
             }
@@ -34,7 +34,7 @@ const HomeBlog = ({blog_list}) => {
                 padding: isMobile ? "10px" : "20px",
                 margin: isMobile ? "0px 5%" : "0px 10%",
                 flexWrap: "wrap",
-                marginTop: isMobile ? "20%" : "4%",
+                marginTop: isMobile ? "15%" : "3.8%",
             }}
         >
             {/* Left Side - Featured Story */}
@@ -96,44 +96,53 @@ const HomeBlog = ({blog_list}) => {
                     width: isMobile ? "100%" : isTablet ? "35%" : "30%",
                     display: "flex",
                     flexDirection: "column",
-                    gap: 2,
-                    marginTop: isMobile ? "20px" : "50px",
                 }}
             >
-                {blog_list && blog_list.length > 0 && blog_list?.map((story, index) => (
-                    <Card key={index} sx={{ display: "flex", boxShadow: 1, borderRadius: "10px" }}
-                        onClick={() => navigateBlogPage(story)}>
-                        <CardMedia
-                            component="img"
-                            sx={{
-                                width: isMobile ? 100 : 90,
-                                height: isMobile ? 85 : 85,
-                                borderRadius: "8px",
-                                cursor: "pointer"
-                            }}
-                            image={story?.image}
-                            alt={story.title}
-                        />
-                        <Box sx={{ padding: 0, margin: 0 }}>
-                            <Typography
-                                variant="body2"
-                                fontWeight="bold"
+                <Box display='flex' justifyContent='start'>
+                    <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>
+                        Popular
+                    </Typography>
+                </Box>
+                <Box sx={{ width: "100%", height: "2px", background: "#007bff", marginBottom: "20px", }} />
+                {/* List of Stories */}
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                    {blog_list && blog_list.length > 0 && blog_list?.map((story, index) => (
+                        <Card key={index} sx={{ display: "flex", boxShadow: 1, borderRadius: "10px" }}
+                            onClick={() => navigateBlogPage(story)}>
+                            <CardMedia
+                                component="img"
                                 sx={{
-                                    padding: '5px 0px 0px 5px',
+                                    width: isMobile ? 100 : 90,
+                                    height: isMobile ? 85 : 85,
+                                    borderRadius: "8px",
+                                    cursor: "pointer"
                                 }}
-                            >
-                                {story.title}
-                            </Typography>
-                            <p style={{ fontSize: "13px", textAlign: "left", padding: '0px 1px 0px 5px', margin:0 }}>{story?.short_description?.substring(0, 60) + "..."}</p>
-                            <Box sx={{ display: "flex", justifyContent: "end", padding: '0px 5px' }}>
-                                <AccessTime sx={{ marginLeft: "8px", color: "#999", fontSize: "14px", marginTop: "2px" }} />
-                                <Typography variant="caption" sx={{ color: "#999", marginLeft: "4px" }}>
-                                    {moment(story.created_at).format("MMM DD, YYYY")}
-                                </Typography>
+                                image={story?.image}
+                                alt={story.title}
+                            />
+                            <Box sx={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                                <Box sx={{ padding: 0, margin: 0 }}>
+                                    <Typography
+                                        variant="body2"
+                                        fontWeight="bold"
+                                        sx={{
+                                            padding: '5px 0px 0px 5px',
+                                        }}
+                                    >
+                                        {story.title}
+                                    </Typography>
+                                    <p style={{ fontSize: "13px", textAlign: "left", padding: '0px 1px 0px 5px', margin: 0 }}>{story?.short_description?.substring(0, 60) + "..."}</p>
+                                </Box>
+                                <Box sx={{ display: "flex", justifyContent: "end", padding: '0px 5px', width: "100%" }}>
+                                    <AccessTime sx={{ marginLeft: "8px", color: "#999", fontSize: "14px", marginTop: "2px" }} />
+                                    <Typography variant="caption" sx={{ color: "#999", marginLeft: "4px", marginRight: "15px" }}>
+                                        {moment(story.created_at).format("MMM DD, YYYY")}
+                                    </Typography>
+                                </Box>
                             </Box>
-                        </Box>
-                    </Card>
-                ))}
+                        </Card>
+                    ))}
+                </Box>
             </Box>
         </Box>
     );

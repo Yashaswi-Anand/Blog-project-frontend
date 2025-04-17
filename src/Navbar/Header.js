@@ -41,7 +41,7 @@ function Header() {
         justifyContent: "center",
         alignItems: "center",
         padding: "10px 20px",
-        boxShadow: 2,
+        boxShadow: 5,
         backgroundColor: "#fff",
         width: "100%",
         position: "fixed",

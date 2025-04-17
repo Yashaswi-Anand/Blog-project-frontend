@@ -36,13 +36,15 @@ function ContentSideBlog() {
               <ListItemText
                 primary={story.title}
                 secondary={
-                  <Typography component="span" variant="caption" color="text.secondary">
-                    {story.date}
-                  </Typography>
+                  story.short_description.length > 30 ? `${story.short_description.substring(0, 40)}...` : story.short_description
+              //       < Typography component="span" variant="caption" color="text.secondary">
+              //   {story.date}
+              // </Typography>
                 }
-                sx={{ ml: 2 }}
+              sx={{ ml: 2 }}
               />
             </ListItem>
+
             {index < latest_blog.length - 1 && <Divider component="li" />}
           </Box>
         ))}

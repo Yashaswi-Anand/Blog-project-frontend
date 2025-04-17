@@ -5,13 +5,11 @@ import Footer from '../Navbar/Footer';
 
 function Dashboard() {
     return (
-        <div>
+        <div style={{ backgroundColor: "lavender" }}>
             <Header />
-
-            <div style={{ marginTop: "50px" }}>
+            <div>
                 <Outlet />
             </div>
-
             <Footer/>
         </div>
     );
