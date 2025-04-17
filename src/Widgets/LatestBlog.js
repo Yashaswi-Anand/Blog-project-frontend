@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Card, CardMedia, CardContent, useMediaQuery } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
-import { mostRecentBlogs } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-const LatestBlog = () => {
+const LatestBlog = ({latest_blog_data}) => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery("(max-width:600px)");
     const [latest_blog, setLatestBlog] = useState([]);
 
     useEffect(() => {
         (async () => {
-            const response = await mostRecentBlogs();
-            if (response?.data?.data) {
-                const data = response?.data?.data;
-                setLatestBlog(data.slice(0, 3)); // Get only the first 3 items
+            if (latest_blog_data.length > 0) {
+                setLatestBlog(latest_blog_data.slice(0, 3)); // Get only the first 3 items
             }
         })()
-    }, []);
+    }, [latest_blog_data]);
 
     const navigateBlogPage = (story) => {
         navigate(`/content-detail/${story.category.toLowerCase()}/${story.id}`);

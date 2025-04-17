@@ -5,19 +5,31 @@ import LatestBlog from '../Widgets/LatestBlog'
 import HomeBlog from '../Widgets/HomeBlog'
 import Socials from '../Widgets/fancyWidgets/Socials'
 import { useState } from 'react'
-import { getBlogList } from '../utils/api'
+import { getBlogList, mostRecentBlogs, mostViewedBlogs } from '../utils/api'
 import LoadingWidget from '../Widgets/fancyWidgets/Loading';
 
 function Home() {
   const [blog_list, setBlogList] = useState([]);
+  const [most_viewed_blog, setMostViewedBlog] = useState([]);
+  const [latest_blog, setLatestBlog] = useState([]);
   const [is_loading, setIsLoading] = useState(true);
   useEffect(() => {
     (async () => {
-      const response = await getBlogList();
-      if (response?.data?.data) {
-        setBlogList(response?.data?.data);
-        setIsLoading(false);
+      const [all_blogs, most_viewed_blogs, latest_blogs] = await Promise.all([
+        getBlogList(),
+        mostViewedBlogs(),
+        mostRecentBlogs()
+      ]);
+      if (all_blogs?.data?.data) {
+        setBlogList(all_blogs?.data?.data);
       }
+      if (most_viewed_blogs?.data?.data) {
+        setMostViewedBlog(most_viewed_blogs?.data?.data);
+      }
+      if (latest_blogs?.data?.data) {
+        setLatestBlog(latest_blogs?.data?.data);
+      }
+      setIsLoading(false);
     })()
   }, []);
   return (
@@ -30,8 +42,8 @@ function Home() {
           {!is_loading && blog_list.length > 0 ?
             <Box>
               <HomeBlog blog_list={blog_list} />
-              <MostViewsBlog />
-              <LatestBlog />
+              <MostViewsBlog most_viewed_blog={most_viewed_blog} />
+              <LatestBlog latest_blog_data={latest_blog} />
             </Box>
             : <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
               <LoadingWidget />

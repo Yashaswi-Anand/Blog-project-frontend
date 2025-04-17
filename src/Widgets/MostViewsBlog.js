@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Typography, Card, CardMedia, CardContent, useMediaQuery } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
-import { mostViewedBlogs } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-const MostViewsBlog = () => {
+const MostViewsBlog = ({most_viewed_blog}) => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery("(max-width:600px)");
-    const [most_blog, setMostBlog] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const response = await mostViewedBlogs();
-            if (response?.data?.data) {
-                setMostBlog(response?.data?.data);
-            }
-        })()
-    }, []);
 
     const navigateBlogPage = (story) => {
         navigate(`/content-detail/${story.category.toLowerCase()}/${story.id}`);
@@ -43,7 +32,7 @@ const MostViewsBlog = () => {
                     flexWrap: "wrap"
                 }}
             >
-                {most_blog && most_blog.length > 0 && most_blog?.map((article, index) => (
+                {most_viewed_blog && most_viewed_blog.length > 0 && most_viewed_blog?.map((article, index) => (
                     <Card
                         key={index}
                         sx={{

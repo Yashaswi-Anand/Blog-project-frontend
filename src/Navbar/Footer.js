@@ -75,7 +75,7 @@ export default function Footer() {
         textAlign: 'center',
         color: '#ccc',
       }}>
-        <p style={{ margin: 0, padding: '5px 0px' }}>Copyright © 2025 SocialRiser Media. All Rights Reserved.</p>
+        <p style={{ margin: 0, padding: '5px 0px' }}>Copyright © 2025 Social Riser. All Rights Reserved.</p>
       </Box>
     </Box>
   );

@@ -11,8 +11,8 @@ const LoadingImage = () => {
 
 const StyledWrapper = styled.div`
   .loader {
-    width: 64px;
-    height: 64px;
+    width: 200px;
+    height: 200px;
     position: relative;
     background: #fff;
     border-radius: 4px;
@@ -24,8 +24,8 @@ const StyledWrapper = styled.div`
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 40px;
-    height: 40px;
+    width: 180px;
+    height: 180px;
     transform: rotate(45deg) translate(30%, 40%);
     background: #7adb90;
     box-shadow: 32px -34px 0 5px #278c3e;
