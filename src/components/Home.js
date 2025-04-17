@@ -30,8 +30,8 @@ function Home() {
           {!is_loading && blog_list.length > 0 ?
             <Box>
               <HomeBlog blog_list={blog_list} />
-              <LatestBlog />
               <MostViewsBlog />
+              <LatestBlog />
             </Box>
             : <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
               <LoadingWidget />

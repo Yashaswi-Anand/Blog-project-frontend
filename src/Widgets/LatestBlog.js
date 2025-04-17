@@ -14,7 +14,8 @@ const LatestBlog = () => {
         (async () => {
             const response = await mostRecentBlogs();
             if (response?.data?.data) {
-                setLatestBlog(response?.data?.data);
+                const data = response?.data?.data;
+                setLatestBlog(data.slice(0, 3)); // Get only the first 3 items
             }
         })()
     }, []);

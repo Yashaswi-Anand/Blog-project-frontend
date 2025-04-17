@@ -9,6 +9,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   return (
@@ -29,8 +30,8 @@ function App() {
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="terms-conditions" element={<TermsAndConditions />} />
-          <Route path="*" element={<div>404 Page Not Found</div>} />
-          <Route path="/not-found-page" element={<div>404 Page Not Found</div>} />
+          <Route path="*" element={<PageNotFound />} />
+          <Route path="/page-not-found" element={<PageNotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

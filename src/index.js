@@ -9,3 +9,18 @@ root.render(
     <App />
   // </React.StrictMode>
 );
+
+/*
+1. Pagination
+2. Global Search
+3. Not Found Page
+4. Privacy Policy
+5. Terms and Conditions
+6. Contact Us
+7. About Us
+
+
+
+
+
+*/

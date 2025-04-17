@@ -39,7 +39,7 @@ const HomeBlog = ({ blog_list }) => {
         >
             {/* Left Side - Featured Story */}
             <Box sx={{ width: isMobile ? "100%" : isTablet ? "60%" : "65%" }}>
-                <Box display='flex' justifyContent='start'>
+                <Box display='flex' justifyContent='start' marginTop='7px'>
                     <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>
                         Top Stories
                     </Typography>
@@ -98,7 +98,7 @@ const HomeBlog = ({ blog_list }) => {
                     flexDirection: "column",
                 }}
             >
-                <Box display='flex' justifyContent='start'>
+                <Box display='flex' justifyContent='start' marginTop='7px'>
                     <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>
                         Popular
                     </Typography>

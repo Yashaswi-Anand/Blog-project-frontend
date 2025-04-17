@@ -39,7 +39,7 @@ const MostViewsBlog = () => {
                     display: "flex",
                     flexDirection: isMobile ? "column" : "row",
                     justifyContent: isMobile ? "center" : "space-between",
-                    gap: 3,
+                    gap: 1,
                     flexWrap: "wrap"
                 }}
             >

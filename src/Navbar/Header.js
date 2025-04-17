@@ -42,7 +42,7 @@ function Header() {
         alignItems: "center",
         padding: "10px 20px",
         boxShadow: 5,
-        backgroundColor: "#fff",
+        backgroundColor: "lavender",
         width: "100%",
         position: "fixed",
         top: 0,

@@ -83,7 +83,7 @@ const Socials = () => {
 const StyledWrapper = styled.div`
   .card {
         position: fixed;
-        width: 80px;
+        width: 55px;
         top: 50%;
         left: 0;
         transform: translateY(-50%);
@@ -130,10 +130,10 @@ const StyledWrapper = styled.div`
   .svg {
     transition: all 0.3s;
     /* if you find some problems change w - h : 30px*/
-    padding: 1rem;
-    height: 30px;
-    width: 30px;
-    border-radius: 100%;
+    padding: 0.8rem;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
     color: rgb(255, 174, 0);
     fill: currentColor;
     box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3),

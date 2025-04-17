@@ -16,10 +16,11 @@ const ContentDetailsPage = () => {
         const response = await getBlogById(blog_id);
         if (response?.data?.data) {
           setContentBlog(response?.data?.data);
-        } else if (response.data.code === 404) {
-          navigate("/not-found-page");
+        } else if (response.data.code === 400) {
+          navigate("/page-not-found");
         }
       } catch (error) {
+        navigate("/page-not-found");
         console.log(error);
       }
     })()
@@ -33,9 +34,6 @@ const ContentDetailsPage = () => {
           {contentBlog?.title}
         </Typography>
       </Box>
-      {/* <Typography variant="body2" color="gray">
-        By Ishita Ganguly | 12 Jan 2025
-      </Typography> */}
 
       {/* Image Section */}
       <Card sx={{ position: "relative" }}>
