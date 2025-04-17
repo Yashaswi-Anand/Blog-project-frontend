@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography, Card, CardMedia, useTheme, useMediaQuery } from "@mui/material";
 import { getBlogById } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import Socials from "../Widgets/fancyWidgets/Socials";
 
 const ContentDetailsPage = () => {
   const navigate = useNavigate();
@@ -24,11 +25,14 @@ const ContentDetailsPage = () => {
     })()
   }, [blog_id, navigate]);
   return (
-    <Box sx={{ margin: isMobile ? "5rem 1rem" : "5rem 10rem" }}>
+    <Box sx={{ margin: isMobile ? "4% 5%" : "4% 10%", }}>
+      <Socials />
       {/* Header Section */}
-      <Typography variant="h4" fontWeight="bold" gutterBottom>
-        {contentBlog?.title}
-      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "start", paddingTop: isMobile ? "60px" : "10px", }}>
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
+          {contentBlog?.title}
+        </Typography>
+      </Box>
       {/* <Typography variant="body2" color="gray">
         By Ishita Ganguly | 12 Jan 2025
       </Typography> */}
@@ -37,7 +41,7 @@ const ContentDetailsPage = () => {
       <Card sx={{ position: "relative" }}>
         <CardMedia
           component="img"
-          height="400"
+          height="500"
           image={contentBlog?.image}
           alt={contentBlog?.category}
           sx={{ objectFit: "unset" }}
