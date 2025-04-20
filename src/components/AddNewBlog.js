@@ -76,8 +76,8 @@ const AddNewBlog = () => {
     };
 
     return (
-        <Box>
-            <Paper elevation={3} sx={{ p: 3, maxWidth: '70%', mx: "auto", marginTop: 10, mb: 5 }}>
+        <Box sx={{ paddingTop: 10}}>
+            <Paper elevation={3} sx={{ p: 3, maxWidth: '70%', mx: "auto", mb: 5 }}>
                 <Typography variant="h5" fontWeight="bold" gutterBottom>
                     Create a Post
                 </Typography>
