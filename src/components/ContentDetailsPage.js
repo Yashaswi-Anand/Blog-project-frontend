@@ -29,13 +29,24 @@ const ContentDetailsPage = () => {
       }
     })()
   }, [blog_id, navigate]);
+
+  function enhanceImageStyles(html) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    wrapper.querySelectorAll('img').forEach(img => {
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'contain';
+    });
+    return wrapper.innerHTML;
+  }
   return (
-    <Box sx={{ margin: isMobile ? "4% 5%" : "4% 10%", }}>
+    <Box sx={{ margin: isMobile ? "4% 5%" : "3.7% 10%"}}>
       <Socials />
       <Box>
         {
           is_loading
-            ? <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '45vh',
+            ? <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '46.2vh',
               marginTop: isMobile ? "10%" : "0px"
              }}>
               <CircularLoading />
@@ -52,7 +63,7 @@ const ContentDetailsPage = () => {
               <Card sx={{ position: "relative" }}>
                 <CardMedia
                   component="img"
-                  height="500"
+                  minHeight="500"
                   image={contentBlog?.image}
                   alt={contentBlog?.category}
                   sx={{ objectFit: "unset" }}
@@ -66,9 +77,12 @@ const ContentDetailsPage = () => {
               <div
                 style={{
                   padding: '10px',
-                  minHeight: '100px'
+                  minHeight: '100px',
+                  overflow: 'auto',
+                  overflowWrap:"anywhere"
                 }}
-                dangerouslySetInnerHTML={{ __html: contentBlog?.description }} // ✅ Renders HTML content from editor
+                className="jodit-content"
+                dangerouslySetInnerHTML={{ __html: enhanceImageStyles(contentBlog?.description) }} // ✅ Renders HTML content from editor
               />
             </Box>
         }

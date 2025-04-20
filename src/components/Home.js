@@ -45,7 +45,7 @@ function Home() {
               <MostViewsBlog most_viewed_blog={most_viewed_blog} />
               <LatestBlog latest_blog_data={latest_blog} />
             </Box>
-            : <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+            : <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '61.3vh' }}>
               <LoadingWidget />
             </Box>
           }

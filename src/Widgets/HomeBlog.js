@@ -53,6 +53,7 @@ const HomeBlog = ({ blog_list }) => {
                             image={activeblog?.image}
                             alt="Featured Story"
                             sx={{ cursor: "pointer" }}
+                            objectFit='cover'
                         />
                         <Typography
                             sx={{

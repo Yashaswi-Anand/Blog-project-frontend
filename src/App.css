@@ -54,6 +54,10 @@
   color: #000 !important;
 }
 
+fs-16 {
+  font-size: 20px !important;
+}
+
 .tab-content :hover {
   color: #61dafb !important;
   text-decoration: underline !important;
