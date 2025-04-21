@@ -7,6 +7,7 @@ import Socials from '../Widgets/fancyWidgets/Socials'
 import { useState } from 'react'
 import { getBlogList, mostRecentBlogs, mostViewedBlogs } from '../utils/api'
 import LoadingWidget from '../Widgets/fancyWidgets/Loading';
+import HemletSEO from '../Widgets/HamletSEO'
 
 function Home() {
   const [blog_list, setBlogList] = useState([]);
@@ -37,6 +38,8 @@ function Home() {
       <main >
         {/* Social Media */}
         <Socials />
+        {/* Hemlet */}
+        <HemletSEO />
         {/* Pages */}
         <Box>
           {!is_loading && blog_list.length > 0 ?
