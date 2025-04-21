@@ -6,8 +6,7 @@ import HomeBlog from '../Widgets/HomeBlog'
 import Socials from '../Widgets/fancyWidgets/Socials'
 import { useState } from 'react'
 import { getBlogList, mostRecentBlogs, mostViewedBlogs } from '../utils/api'
-import LoadingWidget from '../Widgets/fancyWidgets/Loading';
-import HemletSEO from '../Widgets/HamletSEO'
+import CircularLoading from '../Widgets/fancyWidgets/CircularLoading';
 
 function Home() {
   const [blog_list, setBlogList] = useState([]);
@@ -49,7 +48,7 @@ function Home() {
               <LatestBlog latest_blog_data={latest_blog} />
             </Box>
             : <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '61.3vh' }}>
-              <LoadingWidget />
+              <CircularLoading />
             </Box>
           }
         </Box>
