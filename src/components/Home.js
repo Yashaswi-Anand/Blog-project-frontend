@@ -7,6 +7,7 @@ import Socials from '../Widgets/fancyWidgets/Socials'
 import { useState } from 'react'
 import { getBlogList, mostRecentBlogs, mostViewedBlogs } from '../utils/api'
 import CircularLoading from '../Widgets/fancyWidgets/CircularLoading';
+import HemletSEO from '../Widgets/HamletSEO'
 
 function Home() {
   const [blog_list, setBlogList] = useState([]);
