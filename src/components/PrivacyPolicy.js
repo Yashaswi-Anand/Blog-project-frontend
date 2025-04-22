@@ -1,74 +1,91 @@
-import { Container } from '@mui/material'
-import React from 'react'
+import React from 'react';
+import { Container, Typography, Box } from '@mui/material';
 
-function PrivacyPolicy() {
+const PrivacyPolicy = () => {
   return (
-    <Container maxWidth="lg" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'start', marginTop: '100px', marginBottom: '35px' }}>
-      <div className="max-w-4xl mx-auto p-6 text-gray-800">
-        <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
-        <p className="text-sm text-gray-500 mb-6">Effective Date: [Insert Date]</p>
+    <Container maxWidth="md" sx={{ marginTop: "62px" }}>
+      <Typography variant="h4" gutterBottom align="center">
+        <strong><i>Privacy Policy</i></strong>
+      </Typography>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">1. Information We Collect</h2>
-          <p className="mb-2">
-            We collect the following types of information:
-          </p>
-          <ul className="list-disc list-inside space-y-1">
-            <li><strong>Admin Login Data:</strong> Username and password for authentication.</li>
-            <li><strong>Post Content:</strong> Created and managed by the admin.</li>
-            <li><strong>Image Links:</strong> Generated using the third-party service PostImage.</li>
-            <li><strong>Technical Data:</strong> IP address and browser information for security.</li>
-          </ul>
-        </section>
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>1. Personal Data</em></strong></Typography>
+        <Typography>
+          We only collect username and password for the sole purpose of enabling users to log in and manage blog posts.
+        </Typography>
+      </Box>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">2. How We Use Your Information</h2>
-          <p>
-            We use the information to authenticate admin access, manage blog content, securely store data using AWS RDS, and display images from PostImage. We do not sell or share your data for marketing purposes.
-          </p>
-        </section>
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>2. Children's Privacy</em></strong></Typography>
+        <Typography>
+          Our platform is not intended for use by children under the age of 13. We do not knowingly collect or solicit any personal data from children.
+        </Typography>
+      </Box>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">3. Third-Party Services</h2>
-          <p className="mb-2">
-            We use the following third-party services:
-          </p>
-          <ul className="list-disc list-inside space-y-1">
-            <li><strong>PostImage:</strong> <a href="https://postimages.org/privacy" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
-            <li><strong>AWS RDS:</strong> <a href="https://aws.amazon.com/privacy/" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">Privacy Notice</a></li>
-          </ul>
-        </section>
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>3. What Personal Data Do We Collect & How Do We Process It?</em></strong></Typography>
+        <Typography>
+          We collect only username and password. These credentials are collected solely for login purposes to manage blog content.
+        </Typography>
+      </Box>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">4. Data Security</h2>
-          <p>
-            We implement industry-standard measures to protect your data. Admin credentials are encrypted and access is restricted.
-          </p>
-        </section>
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom>4<strong><em>. How & Where Do We Obtain Your Personal Data?</em></strong></Typography>
+        <Typography>
+          We do not collect personal data directly from users. The login credentials are provided by the backend developer.
+        </Typography>
+      </Box>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">5. Your Rights</h2>
-          <p>
-            You may update your credentials, manage blog content, and request removal of stored data if applicable.
-          </p>
-        </section>
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>5. Lawful Bases of Processing Your Personal Data</em></strong></Typography>
+        <Typography>
+          We rely on user consent and our legitimate interest in providing secure login and blog management functionality.
+        </Typography>
+      </Box>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">6. Changes to This Policy</h2>
-          <p>
-            We may update this policy occasionally. Updates will be posted here with a new effective date.
-          </p>
-        </section>
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>6. When Do We Share Your Personal Data with Third Parties?</em></strong></Typography>
+        <Typography>
+          We do not share your personal data with third parties. Your login credentials remain confidential and secure.
+        </Typography>
+      </Box>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">7. Contact Us</h2>
-          <p>
-            If you have questions, contact us at: <strong>[Your Email Here]</strong>
-          </p>
-        </section>
-      </div>
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>7. No Sale of Personal Data</em></strong></Typography>
+        <Typography>
+          We do not sell or rent your personal data to any third parties.
+        </Typography>
+      </Box>
+
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>8. Links to Other Applications</em></strong></Typography>
+        <Typography>
+          Our blog may include links to external websites or apps to enhance user experience. We are not responsible for their privacy practices.
+        </Typography>
+      </Box>
+
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>9. Your Rights</em></strong></Typography>
+        <Typography>
+          You have the right to access, correct, or delete your data, and to withdraw your consent. Contact us for data-related requests.
+        </Typography>
+      </Box>
+
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>10. Third Party Permission</em></strong></Typography>
+        <Typography>
+          We do not give any third party permission to access or manage your personal data.
+        </Typography>
+      </Box>
+
+      <Box mb={4}>
+        <Typography variant="h6" gutterBottom><strong><em>11. Notification of Changes to Our Privacy Notice</em></strong></Typography>
+        <Typography>
+          We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.
+        </Typography>
+      </Box>
     </Container>
-  )
-}
+  );
+};
 
 export default PrivacyPolicy
