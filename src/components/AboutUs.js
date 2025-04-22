@@ -7,7 +7,7 @@ function AboutUs() {
       <Box sx={{ width: '100%', p: 4, boxShadow: 4, borderRadius: 3, color: '#000' }}>
         <Box>
           <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 2, letterSpacing: 1, color: '#000' }}>About Us</Typography>
-          <Box sx={{ width: "80%", height: "4px", background: "#fff", margin: "0 auto 20px", borderRadius: "2px" }} />
+          <Box sx={{ width: "80%", height: "4px", background: "#00bcd4", margin: "0 auto 20px", borderRadius: "2px" }} />
 
           <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
             <em><span style={{ color: '#00bcd4' }}>thetech</span>Khazana</em> - Your Gateway to the Future of Technology

@@ -3,7 +3,7 @@ import { Container, Typography, Box } from '@mui/material';
 
 const PrivacyPolicy = () => {
   return (
-    <Container maxWidth="md" sx={{ marginTop: "62px" }}>
+    <Container maxWidth="md" sx={{ marginTop: "70px" }}>
       <Typography variant="h4" gutterBottom align="center">
         <strong><i>Privacy Policy</i></strong>
       </Typography>
