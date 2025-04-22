@@ -82,7 +82,7 @@ const TermsAndConditions = () => {
       <Box mb={4}>
         <Typography variant="h6" gutterBottom><strong>10. Contact</strong></Typography>
         <Typography>
-          For questions or concerns regarding these Terms and Conditions, please contact us at: <strong>contact@socialriser.com</strong>.
+          For questions or concerns regarding these Terms and Conditions, please contact us at: <strong><i>contact@socialriser.com</i></strong>.
         </Typography>
       </Box>
     </Container>
