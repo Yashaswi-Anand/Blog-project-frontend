@@ -6,7 +6,8 @@ import HomeBlog from '../Widgets/HomeBlog'
 import Socials from '../Widgets/fancyWidgets/Socials'
 import { useState } from 'react'
 import { getBlogList, mostRecentBlogs, mostViewedBlogs } from '../utils/api'
-import CircularLoading from '../Widgets/fancyWidgets/CircularLoading';
+import ThreeCardShimmer from '../Widgets/skeletons/ThreeCardShimmer'
+import TopStortiesShimmer from '../Widgets/skeletons/TopStoriesSimmer'
 
 function Home() {
   const [blog_list, setBlogList] = useState([]);
@@ -45,8 +46,10 @@ function Home() {
               <MostViewsBlog most_viewed_blog={most_viewed_blog} />
               <LatestBlog latest_blog_data={latest_blog} />
             </Box>
-            : <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '61.3vh' }}>
-              <CircularLoading />
+            : <Box>
+              <TopStortiesShimmer blog_list={blog_list}/>
+              <ThreeCardShimmer />
+              <ThreeCardShimmer />
             </Box>
           }
         </Box>
