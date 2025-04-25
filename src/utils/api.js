@@ -77,7 +77,7 @@ export const mostRecentBlogs = async () => {
 
 export const blogCategoryByCategory = async (category) => {
     try {
-        const response = await api.get(`/project/blog_content_by_category`, { params: { category: category } });
+        const response = await api.get(`/project/blog_content_by_category`, { params: { category: category.content_type, page: category.page, limit: category.limit } });
         return response
     } catch (error) {
         console.log(error);
