@@ -11,13 +11,17 @@ function ContentBlog({ content_type }) {
     const navigate = useNavigate()
     const [content_blog, setContentBlog] = useState([]);
     const [isloading, setIsLoading] = useState(true);
-    const [page, setPage] = React.useState(1)
-    const pageSize = 2
+    const [page, setPage] = useState(1)
+    const pageSize = 5
     const [total_length, setTotalLength] = useState(0)
 
     useEffect(() => {
-        setIsLoading(true);
+        setPage(1);
+    }, [content_type]);
+
+    useEffect(() => {
         (async () => {
+            setIsLoading(true);
             const response = await blogCategoryByCategory({
                 page: page,
                 limit: pageSize,
