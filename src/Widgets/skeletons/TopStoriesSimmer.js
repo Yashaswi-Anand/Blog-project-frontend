@@ -1,96 +1,74 @@
 import React from "react";
-import { Box, Card, useMediaQuery, useTheme, Skeleton, Avatar, CardContent } from "@mui/material";
+import { Box, Skeleton, Grid, useMediaQuery, useTheme } from "@mui/material";
 
-const TopStortiesShimmer = () => {
+const TopStoriesShimmer = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); 
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        gap: 3,
-        padding: isMobile ? "10px" : "20px",
-        margin: isMobile ? "0px 5%" : "0px 10%",
-        flexWrap: "wrap",
-        marginTop: isMobile ? "15%" : "3.8%",
-      }}
-    >
-      {/* Left Side - Featured Story */}
-      <Box sx={{ width: isMobile ? "100%" : isTablet ? "60%" : "65%" }}>
-        <Box display='flex' justifyContent='start' marginTop='7px'>
-          <Skeleton variant="text" sx={{ fontSize: '1rem', width: '25%' }} />
-        </Box>
-        <Box sx={{ width: "100%", height: "2px", marginBottom: "20px" }} />
-        <Card sx={{ borderRadius: "10px", boxShadow: 3 }}>
-          <Box sx={{ position: "relative" }} >
+    <Box sx={{ padding: isMobile ? 2 : 4, margin: isMobile ? "15% 5% 0 5%" : "3.8% 10% 0 10%" }}>
+      
+      {/* Heading Skeleton */}
+      <Box display="flex" justifyContent="start" mb={2}>
+        <Skeleton variant="text" width="25%" height={30} />
+      </Box>
+
+      {/* Main Content */}
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          
+          {/* Main Big Card */}
+          <Grid item xs={12} md={7}>
             <Skeleton
               variant="rectangular"
               width="100%"
-              height={350}
+              height={isMobile ? 300 : isTablet ? 400 : 600}
+              sx={{ borderRadius: 4 }}
             />
-            <Skeleton
-              sx={{
-                position: "absolute",
-                bottom: 10,
-                left: 10,
-                fontSize: "12px",
-                width: "20%"
-              }}
-            />
-          </Box>
-          <CardContent>
-            <Box>
-              <Box sx={{ display: "flex", justifyContent: "end" }}>
-                <Skeleton style={{ width: "2%", marginRight: "5px", marginTop: "5px", height: "15px" }} variant="circular"><Avatar /></Skeleton>
-                <Skeleton variant="text" sx={{ fontSize: '1rem', width: '15%' }} />
-              </Box>
-              <Skeleton variant="text" sx={{ fontSize: '1rem', width: '70%' }} />
-            </Box>
-            <Skeleton variant="text" sx={{ fontSize: '1rem', width: '99%' }} />
-          </CardContent>
-        </Card>
-      </Box>
+          </Grid>
 
-      {/* Right Side - List of Stories */}
-      <Box
-        sx={{
-          width: isMobile ? "100%" : isTablet ? "35%" : "30%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Box display='flex' justifyContent='start' marginTop='7px'>
-          <Skeleton variant="text" sx={{ fontSize: '1rem', width: '25%' }} />
-        </Box>
-        <Box sx={{ width: "100%", height: "2px", marginBottom: "20px", }} />
-        {/* List of Stories */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          {[1, 2, 3, 4, 5].map((_, index) => (
-            <Card key={index} sx={{ display: "flex", boxShadow: 1, borderRadius: "10px" }}>
+          {/* Right Side Cards */}
+          <Grid item xs={12} md={5} container spacing={2}>
+            
+            {/* Top Right Card */}
+            <Grid item xs={12}>
               <Skeleton
                 variant="rectangular"
-                width="40%"
-                height={88}
+                width="100%"
+                height={isMobile ? 200 : isTablet ? 250 : 320}
+                sx={{ borderRadius: 4 }}
               />
-              <Box sx={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <Box sx={{ padding: 0, margin: 0, marginLeft: "10px" }}>
-                  <Skeleton variant="text" sx={{ fontSize: '1rem', width: '30%' }} />
-                  <Skeleton variant="text" sx={{ fontSize: '1rem', width: '75%' }} />
-                </Box>
-                <Box sx={{ display: "flex", justifyContent: "end", marginRight: "10px" }}>
-                  <Skeleton style={{ width: "5%", marginRight: "5px", marginTop: "5px", height: "15px" }} variant="circular"><Avatar /></Skeleton>
-                  <Skeleton variant="text" sx={{ fontSize: '1rem', width: '15%' }} />
-                </Box>
-              </Box>
-            </Card>
-          ))}
-        </Box>
+            </Grid>
+
+            {/* Bottom Two Cards */}
+            <Grid item xs={12} container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <Skeleton
+                  variant="rectangular"
+                  width="100%"
+                  height={isMobile ? 200 : isTablet ? 200 : 260}
+                  sx={{ borderRadius: 4 }}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <Skeleton
+                  variant="rectangular"
+                  width="100%"
+                  height={isMobile ? 200 : isTablet ? 200 : 260}
+                  sx={{ borderRadius: 4 }}
+                />
+              </Grid>
+            </Grid>
+
+          </Grid>
+
+        </Grid>
       </Box>
+
     </Box>
   );
 };
 
-export default TopStortiesShimmer;
+export default TopStoriesShimmer;
