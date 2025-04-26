@@ -40,7 +40,7 @@ function Home() {
         <Socials />
         {/* Pages */}
         <Box>
-          {is_loading && blog_list.length > 0 ?
+          {!is_loading && blog_list.length > 0 ?
             <Box>
               <HomeBlog blog_list={blog_list} />
               <MostViewsBlog most_viewed_blog={most_viewed_blog} />
