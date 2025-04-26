@@ -201,3 +201,7 @@ fs-16 {
 .about-us {
   margin: 10px 10% !important;
 }
+
+.text-wrap {
+  text-wrap-style: balance !important;
+}
