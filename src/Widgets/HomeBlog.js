@@ -133,7 +133,7 @@ const HomeBlog = ({ blog_list }) => {
                                                 color: '#00bcd4',
                                                 cursor: 'pointer',
                                             },
-                                            textWrap: 'balance'
+                                            textWrap: 'auto'
                                         }}>
                                         {blog_list[1]?.title}
                                     </Typography>
@@ -191,7 +191,7 @@ const HomeBlog = ({ blog_list }) => {
                                                 },
                                                 textWrap: 'balance'
                                             }}>
-                                            {blog_list[2]?.title}
+                                            {blog_list[2]?.title.substring(0, 50)+'...'}
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -242,7 +242,7 @@ const HomeBlog = ({ blog_list }) => {
                                                 },
                                                 textWrap: 'balance'
                                             }}>
-                                            {blog_list[3]?.title}
+                                            {blog_list[3]?.title.substring(0, 50)}
                                         </Typography>
                                     </CardContent>
                                 </Card>

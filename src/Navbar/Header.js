@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, IconButton, Box, Button, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -12,8 +12,19 @@ function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const isTabletOrMobile = useMediaQuery("(max-width:900px)");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 20); 
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -40,13 +51,16 @@ function Header() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "10px 20px",
-        boxShadow: 5,
-        backgroundColor: "lavender",
+        padding: "20px 20px",
+        boxShadow: isScrolled ? 4 : 0,
+        transition: "box-shadow 0.3s ease-in-out",
         width: "100%",
         position: "fixed",
         top: 0,
         zIndex: 1000,
+        backgroundColor: "lavender !important",
+        borderBottomRightRadius: 50,
+        borderBottomLeftRadius: 10
       }}
     >
       <Box>
@@ -73,6 +87,7 @@ function Header() {
                 anchor="right"
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
+                // className='APP-Backgroud'
                 sx={{
                   "& .MuiDrawer-paper": {
                     width: "80%",
@@ -80,7 +95,9 @@ function Header() {
                     justifyContent: "space-between",
                     borderTopLeftRadius: 20,
                     borderBottomLeftRadius: 20,
-                    backgroundColor: "lavender",
+                    backgroundColor: "lavender !important",
+                    zIndex: 1000,
+                    boxShadow: 5
                   },
                 }}
               >

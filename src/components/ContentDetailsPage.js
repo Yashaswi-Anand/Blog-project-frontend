@@ -11,6 +11,7 @@ const ContentDetailsPage = () => {
   const [is_loading, setIsLoading] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("sm", "md"));
   const blog_id = window.location.pathname.split("/").pop();
   useEffect(() => {
     setIsLoading(true);
@@ -63,7 +64,7 @@ const ContentDetailsPage = () => {
               <Card sx={{ position: "relative" }}>
                 <CardMedia
                   component="img"
-                  minHeight="500"
+                  height={isMobile ? 350 : isTablet ? 400 : 600}
                   image={contentBlog?.image}
                   alt={contentBlog?.category}
                   sx={{ objectFit: "unset" }}

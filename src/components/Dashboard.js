@@ -5,7 +5,7 @@ import Footer from '../Navbar/Footer';
 
 function Dashboard() {
     return (
-        <div style={{ backgroundColor: "lavender" }}>
+        <div className='APP-Backgroud'>
             <Header />
             <div>
                 <Outlet />

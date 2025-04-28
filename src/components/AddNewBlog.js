@@ -17,7 +17,6 @@ const AddNewBlog = () => {
     const [formData, setFormData] = useState({
         title: "",
         category: "",
-        short_description: "",
         description: "",
         link: ""
     });
@@ -58,8 +57,9 @@ const AddNewBlog = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         formData.description = content_description;
+        formData.short_description = formData.title;
         await createNewBlog(formData);
-        alert("Form submitted! Check console.");
+        alert("Successfully Submitted New Post.");
         handleReset();
     };
 
@@ -68,7 +68,6 @@ const AddNewBlog = () => {
         setFormData({
             title: "",
             category: "",
-            short_description: "",
             description: "",
             link: ""
         });
@@ -91,19 +90,6 @@ const AddNewBlog = () => {
                         value={formData.title}
                         onChange={handleChange}
                         margin="normal"
-                        required
-                    />
-
-                    {/* Short Description */}
-                    <TextField
-                        fullWidth
-                        label="Short Description"
-                        name="short_description"
-                        value={formData.short_description}
-                        onChange={handleChange}
-                        margin="normal"
-                        multiline
-                        rows={2}
                         required
                     />
 

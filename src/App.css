@@ -4,7 +4,11 @@
 
 .body {
   overflow-y: hidden;
-  background: lavender !important
+  background: #f3f6fc !important
+}
+
+.APP-Backgroud {
+  background: #f3f6fc !important
 }
 
 .App-logo {
