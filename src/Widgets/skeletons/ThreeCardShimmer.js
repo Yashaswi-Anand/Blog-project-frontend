@@ -5,8 +5,7 @@ const ThreeCardSimmer = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
-    <Box sx={{ padding: "20px", margin: isMobile ? "0px 5%" : "0px 10%" }}>
-      
+    <Box>
       {/* Heading Skeleton */}
       <Box display="flex" justifyContent="start" mb={2}>
         <Skeleton variant="text" width="15%" height={30} />

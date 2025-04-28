@@ -42,14 +42,21 @@ const ContentDetailsPage = () => {
     return wrapper.innerHTML;
   }
   return (
-    <Box sx={{ margin: isMobile ? "4% 5%" : "3.7% 10%"}}>
+    <Box sx={{
+      margin: isMobile ? "4% 4% 0% 4%" : "3.7% 10% 0% 10%",
+      padding: '1px 50px',
+      backgroundColor: 'white',
+      zIndex: 1000,
+      height: '100%',
+    }}>
       <Socials />
       <Box>
         {
           is_loading
-            ? <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '46.2vh',
+            ? <Box sx={{
+              display: 'flex', justifyContent: 'center', alignItems: 'center', height: '46.2vh',
               marginTop: isMobile ? "10%" : "0px"
-             }}>
+            }}>
               <CircularLoading />
             </Box>
             : <Box>
@@ -85,7 +92,7 @@ const ContentDetailsPage = () => {
                   padding: '10px',
                   minHeight: '100px',
                   overflow: 'auto',
-                  overflowWrap:"anywhere"
+                  overflowWrap: "anywhere"
                 }}
                 className="jodit-content"
                 dangerouslySetInnerHTML={{ __html: enhanceImageStyles(contentBlog?.description) }} // ✅ Renders HTML content from editor

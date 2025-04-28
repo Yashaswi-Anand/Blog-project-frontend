@@ -22,7 +22,7 @@ const LatestBlog = ({latest_blog_data}) => {
     };
 
     return (
-        <Box sx={{ padding: "20px", margin: isMobile ? "0px 5%" : "0px 10%" }}>
+        <Box sx={{marginTop: 5}}>
             {/* Heading */}
             <Box display='flex' justifyContent='start'>
                 <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>

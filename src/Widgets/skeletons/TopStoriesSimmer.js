@@ -7,7 +7,7 @@ const TopStoriesShimmer = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   return (
-    <Box sx={{ padding: isMobile ? 2 : 4, margin: isMobile ? "15% 5% 0 5%" : "3.8% 10% 0 10%" }}>
+    <Box>
       
       {/* Heading Skeleton */}
       <Box display="flex" justifyContent="start" mb={2}>

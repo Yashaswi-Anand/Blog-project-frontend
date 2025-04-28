@@ -26,7 +26,7 @@ const HomeBlog = ({ blog_list }) => {
     };
 
     return (
-        <Box sx={{ padding: isMobile ? 2 : 4, margin: isMobile ? "15% 5% 0 5%" : "3.8% 10% 0 10%" }}>
+        <Box>
             <Box display='flex' justifyContent='start'>
                 <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>
                     Top Stories

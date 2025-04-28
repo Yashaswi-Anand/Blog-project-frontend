@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
 import MostViewsBlog from '../Widgets/MostViewsBlog'
 import LatestBlog from '../Widgets/LatestBlog'
 import HomeBlog from '../Widgets/HomeBlog'
@@ -14,6 +14,8 @@ function Home() {
   const [most_viewed_blog, setMostViewedBlog] = useState([]);
   const [latest_blog, setLatestBlog] = useState([]);
   const [is_loading, setIsLoading] = useState(true);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // <600px
   useEffect(() => {
     (async () => {
       const [all_blogs, most_viewed_blogs, latest_blogs] = await Promise.all([
@@ -39,7 +41,7 @@ function Home() {
         {/* Social Media */}
         <Socials />
         {/* Pages */}
-        <Box>
+        <Box sx={{ padding: isMobile ? 2 : 4, margin: isMobile ? "15% 5% 0 5%" : "3.8% 10% 0 10%", backgroundColor: 'white', zIndex: 1000 }}>
           {!is_loading && blog_list.length > 0 ?
             <Box>
               <HomeBlog blog_list={blog_list} />
