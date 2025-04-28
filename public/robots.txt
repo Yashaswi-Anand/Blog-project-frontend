@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for https://thetechkhazana.socialriser.com/
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://thetechkhazana.socialriser.com/sitemap.xml
+Host: thetechkhazana.socialriser.com

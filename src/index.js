@@ -12,16 +12,16 @@ root.render(
 
 /*
 1. Pagination -- done
-2. Global Search
-3. Logo -- done
-4. Privacy Policy -- done
-5. Terms and Conditions -- done
-6. Contact Us -- done
-7. About Us -- done
-8. Format of Editor display data
-9. SEO -- done
-10.Google search console
-11. Skeleton loading
-12. Fancy Home page UI
-
+2. Logo -- done
+3. Privacy Policy -- done
+4. Terms and Conditions -- done
+5. Contact Us -- done
+6. About Us -- done
+8. SEO
+9. Global Search
+10. Format of Editor display data
+11. Google Search console
+12. Skeleton loading
+13. Fancy & Animated Home page UI
+14. Sitemap - done
 */
