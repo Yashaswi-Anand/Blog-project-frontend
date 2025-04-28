@@ -4,6 +4,7 @@ import { getBlogById } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import Socials from "../Widgets/fancyWidgets/Socials";
 import CircularLoading from "../Widgets/fancyWidgets/CircularLoading";
+import moment from "moment";
 
 const ContentDetailsPage = () => {
   const navigate = useNavigate();
@@ -11,7 +12,6 @@ const ContentDetailsPage = () => {
   const [is_loading, setIsLoading] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("sm", "md"));
   const blog_id = window.location.pathname.split("/").pop();
   useEffect(() => {
     setIsLoading(true);
@@ -54,9 +54,14 @@ const ContentDetailsPage = () => {
             </Box>
             : <Box>
               {/* Header Section */}
-              <Box sx={{ display: "flex", justifyContent: "start", paddingTop: isMobile ? "60px" : "20px", }}>
+              <Box sx={{ display: "flex", justifyContent: "start", paddingTop: isMobile ? "70px" : "30px", }}>
                 <Typography variant="h4" fontWeight="bold" gutterBottom>
                   {contentBlog?.title}
+                </Typography>
+              </Box>
+              <Box sx={{ display: "flex", justifyContent: "end", margin: 0, }}>
+                <Typography variant="h6" fontSize={14} fontWeight="200" gutterBottom>
+                  Posted @ {moment(contentBlog.date).format("MMMM D, YYYY")}
                 </Typography>
               </Box>
 
@@ -64,7 +69,7 @@ const ContentDetailsPage = () => {
               <Card sx={{ position: "relative" }}>
                 <CardMedia
                   component="img"
-                  height={isMobile ? 350 : isTablet ? 400 : 600}
+                  maxHeight={200}
                   image={contentBlog?.image}
                   alt={contentBlog?.category}
                   sx={{ objectFit: "unset" }}

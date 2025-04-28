@@ -87,7 +87,6 @@ function Header() {
                 anchor="right"
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
-                // className='APP-Backgroud'
                 sx={{
                   "& .MuiDrawer-paper": {
                     width: "80%",
@@ -113,10 +112,10 @@ function Header() {
                     </Box>
                     <hr></hr>
                   </Box>
-                  <Box sx={{ padding: '0px 10px' }}>
+                  <Box sx={{ padding: '0px 10px'}}>
                     <List>
                       <ListItem button onClick={() => handleNavigation('/gadget')}>
-                        <ListItemText sx={{ ':hover': { color: '#00bcd4', textDecoration: 'underline' } }} primary="Gadget" />
+                        <ListItemText sx={{ fontSize: '20px', ':hover': { color: '#00bcd4', textDecoration: 'underline', fontSize: '20px' } }} primary="Gadget" />
                       </ListItem>
                       <ListItem button onClick={() => handleNavigation('/ai_website')}>
                         <ListItemText sx={{ ':hover': { color: '#00bcd4', textDecoration: 'underline' } }} primary="AI Website" />
