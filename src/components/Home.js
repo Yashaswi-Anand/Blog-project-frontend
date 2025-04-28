@@ -41,7 +41,7 @@ function Home() {
         {/* Social Media */}
         <Socials />
         {/* Pages */}
-        <Box sx={{ padding: isMobile ? 2 : 4, margin: isMobile ? "15% 5% 0 5%" : "3.8% 10% 0 10%", backgroundColor: 'white', zIndex: 1000 }}>
+        <Box sx={{ padding: isMobile ? 2 : 4, margin: isMobile ? "20% 5% 0 5%" : "3.8% 10% 0 10%", backgroundColor: isMobile ? '' : 'white', zIndex: 1000 }}>
           {!is_loading && blog_list.length > 0 ?
             <Box>
               <HomeBlog blog_list={blog_list} />

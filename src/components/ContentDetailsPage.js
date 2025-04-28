@@ -45,7 +45,7 @@ const ContentDetailsPage = () => {
     <Box sx={{
       margin: isMobile ? "4% 4% 0% 4%" : "3.7% 10% 0% 10%",
       padding: '1px 50px',
-      backgroundColor: 'white',
+      backgroundColor: isMobile ? '' : 'white',
       zIndex: 1000,
       height: '100%',
     }}>
@@ -55,7 +55,7 @@ const ContentDetailsPage = () => {
           is_loading
             ? <Box sx={{
               display: 'flex', justifyContent: 'center', alignItems: 'center', height: '46.2vh',
-              marginTop: isMobile ? "10%" : "0px"
+              marginTop: isMobile ? "25%" : "0px"
             }}>
               <CircularLoading />
             </Box>
