@@ -20,8 +20,10 @@ root.render(
 8. SEO
 9. Global Search
 10. Format of Editor display data
-11. Google Search console
-12. Skeleton loading
-13. Fancy & Animated Home page UI
+11. Google Search console -- working
+12. Skeleton loading -- done
+13. Fancy & Animated Home page UI --- done
 14. Sitemap - done
+15. Light and Dark Theme
+16. Google Fonts
 */

@@ -44,7 +44,7 @@ const ContentDetailsPage = () => {
   return (
     <Box sx={{
       margin: isMobile ? "4% 4% 0% 4%" : "3.7% 10% 0% 10%",
-      padding: '1px 50px',
+      padding: isMobile ? '1px 1px' : '1px 50px',
       backgroundColor: isMobile ? '' : 'white',
       zIndex: 1000,
       height: '100%',
