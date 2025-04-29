@@ -22,11 +22,11 @@ function ContentSideBlog() {
 
   return (
     <div>
-      <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, borderBottom: '3px solid #00bcd4', display: 'inline-block' }}>
+      <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, mt: 3, color: 'text.primary',  borderBottom: '3px solid #00bcd4', display: 'inline-block' }}>
         Latest Stories
       </Typography>
 
-      <List>
+      <List sx={{ color: 'text.primary' }} >
         {latest_blog && latest_blog.length > 0 && latest_blog?.map((story, index) => (
           <Box key={index} onClick={() => navigateBlogPage(story)}>
             <ListItem alignItems="flex-start" sx={{ cursor: 'pointer' }}>
@@ -34,6 +34,10 @@ function ContentSideBlog() {
                 <Avatar src={story.image} variant="rounded" sx={{ width: 70, height: 70 }} />
               </ListItemAvatar>
               <ListItemText
+                // sx={{ color: 'text.primary', '&:hover': {
+                //   cursor: 'pointer',
+                //   color: '#00bcd4'
+                // }}}
                 primary={story.title}
                 secondary={
                   story.short_description.length > 30 ? `${story.short_description.substring(0, 40)}...` : story.short_description

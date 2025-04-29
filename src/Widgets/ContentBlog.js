@@ -45,7 +45,7 @@ function ContentBlog({ content_type }) {
 
     return (
         <div>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#000', mb: 2, borderBottom: '3px solid #00bcd4', display: 'inline-block' }}>
+            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'text.primary', mb: 2, mt: 2, borderBottom: '3px solid #00bcd4', display: 'inline-block' }}>
                 {getTabStringName(content_type)}
             </Typography>
 

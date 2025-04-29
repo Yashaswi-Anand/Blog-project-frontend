@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import LoginPage from "../Widgets/LoginPage";
 import ReplyIcon from '@mui/icons-material/Reply';
 import SocialOnFooter from "../Widgets/fancyWidgets/SocialOnFooter";
+import ThemeToggleButton from "../Widgets/theme/ThemeToggleButton";
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -18,7 +19,7 @@ function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 20); 
+      setIsScrolled(scrollTop > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -81,7 +82,7 @@ function Header() {
           {isTabletOrMobile ? (
             <>
               <IconButton onClick={handleDrawerToggle}>
-                <MenuIcon />
+                <MenuIcon color="primary"/>
               </IconButton>
               <Drawer
                 anchor="right"
@@ -94,7 +95,7 @@ function Header() {
                     justifyContent: "space-between",
                     borderTopLeftRadius: 20,
                     borderBottomLeftRadius: 20,
-                    backgroundColor: "lavender !important",
+                    background: 'background.paper',
                     zIndex: 1000,
                     boxShadow: 5
                   },
@@ -102,17 +103,20 @@ function Header() {
               >
                 <Box>
                   <Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                      <IconButton sx={{ marginLeft: 2, marginTop: 1 }} onClick={handleDrawerToggle}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start', width: '100%' }}>
+                      <IconButton sx={{ marginTop: 1 }} onClick={handleDrawerToggle}>
                         <ReplyIcon sx={{ color: '#00bcd4' }} />
                       </IconButton>
-                      <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer", margin: 1, padding: '10px 10px 0px 10px' }} onClick={() => handleNavigation('/')}>
+                      <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer", margin: 1, marginTop: 2 }} onClick={() => handleNavigation('/')}>
                         <span style={{ color: "#00bcd4" }}>thetech</span>Khazana
                       </Typography>
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginTop: 10, width: '100%' }}>
+                        <ThemeToggleButton />
+                      </div>
                     </Box>
                     <hr></hr>
                   </Box>
-                  <Box sx={{ padding: '0px 10px'}}>
+                  <Box sx={{ padding: '0px 10px' }}>
                     <List>
                       <ListItem button onClick={() => handleNavigation('/gadget')}>
                         <ListItemText sx={{ fontSize: '20px', ':hover': { color: '#00bcd4', textDecoration: 'underline', fontSize: '20px' } }} primary="Gadget" />
@@ -159,9 +163,11 @@ function Header() {
                 : <IconButton onClick={onHandleClickLogin}>
                   <AccountCircleIcon />
                 </IconButton>}
+              <ThemeToggleButton />
             </Box>
           )}
         </Box>
+        {/* <ThemeToggleButton /> */}
       </Box>
     </Box>
   );

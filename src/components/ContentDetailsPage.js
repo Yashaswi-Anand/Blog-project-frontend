@@ -43,11 +43,12 @@ const ContentDetailsPage = () => {
   }
   return (
     <Box sx={{
-      margin: isMobile ? "4% 4% 0% 4%" : "3.7% 10% 0% 10%",
-      padding: isMobile ? '1px 1px' : '1px 50px',
-      backgroundColor: isMobile ? '' : 'white',
+      margin: isMobile ? "4% 0% 0% 0%" : "3.7% 10% 0% 10%",
+      padding: isMobile ? '1px 20px' : '1px 50px',
+      backgroundColor: 'background.paper',
       zIndex: 1000,
       height: '100%',
+      color: 'text.primary',
     }}>
       <Socials />
       <Box>

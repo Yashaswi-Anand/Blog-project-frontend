@@ -16,7 +16,7 @@ const MostViewsBlog = ({most_viewed_blog}) => {
         <Box sx={{marginTop: 5}}>
             {/* Heading */}
             <Box display='flex' justifyContent='start'>
-                <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>
+                <Typography variant="h5" fontWeight="bold" color="text.primary" gutterBottom>
                     Most Viewed
                 </Typography>
             </Box>

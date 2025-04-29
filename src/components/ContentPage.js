@@ -8,8 +8,8 @@ function ContentPage() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Hide on md and below
 
   return (
-    <Container maxWidth="lg" sx={{ marginTop: 10 }}>
-      <Grid container spacing={4}>
+    <Container sx={{ marginTop: 10 }}>
+      <Grid container spacing={4} backgroundColor={theme.palette.background.paper}>
         {/* Left Sidebar - Latest Stories (Hidden on Mobile) */}
         {!isMobile && (
           <Grid item xs={12} md={4}>
@@ -18,7 +18,7 @@ function ContentPage() {
         )}
 
         {/* Main Content - Trending News */}
-        <Grid item xs={12} md={isMobile ? 12 : 8}>
+        <Grid item xs={12} md={isMobile ? 12 : 8} backgroundColor={theme.palette.background.paper}>
           <ContentBlog content_type={window.location.pathname.split('/').pop()} />
         </Grid>
       </Grid>

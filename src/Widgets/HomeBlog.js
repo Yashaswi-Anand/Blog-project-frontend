@@ -29,11 +29,12 @@ const HomeBlog = ({ blog_list }) => {
     return (
         <Box>
             <Box display='flex' justifyContent='start'>
-                <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>
+                <Typography variant="h5" fontWeight="bold" color="text.primary" gutterBottom mt={2}>
                     Top Stories
                 </Typography>
             </Box>
-            <Box sx={{ width: "100%", height: "2px", background: "#007bff", marginBottom: "20px" }} />
+
+            <Box sx={{ width: "100%", height: "2px", bgcolor: "#007bff", marginBottom: "20px" }} />
 
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>

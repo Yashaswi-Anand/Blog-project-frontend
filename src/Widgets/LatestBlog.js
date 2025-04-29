@@ -25,7 +25,7 @@ const LatestBlog = ({latest_blog_data}) => {
         <Box sx={{marginTop: 5}}>
             {/* Heading */}
             <Box display='flex' justifyContent='start'>
-                <Typography variant="h5" fontWeight="bold" color="#007bff" gutterBottom>
+                <Typography variant="h5" fontWeight="bold" color="text.primary" gutterBottom>
                     Latest
                 </Typography>
             </Box>
