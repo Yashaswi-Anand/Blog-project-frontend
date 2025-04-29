@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Typography, Card, CardMedia, CardContent, useMediaQuery } from "@mui/material";
+import { Box, Typography, Card, CardMedia, CardContent, useMediaQuery, useTheme } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const MostViewsBlog = ({most_viewed_blog}) => {
     const navigate = useNavigate();
+    const theme = useTheme();
     const isMobile = useMediaQuery("(max-width:600px)");
 
     const navigateBlogPage = (story) => {
@@ -20,7 +21,7 @@ const MostViewsBlog = ({most_viewed_blog}) => {
                     Most Viewed
                 </Typography>
             </Box>
-            <Box sx={{ width: "100%", height: "2px", background: "#007bff", marginBottom: "20px" }} />
+            <Box sx={{ width: "100%", height: "2px", background: theme.palette.horizontalDivider, marginBottom: "20px" }} />
 
             {/* News Cards */}
             <Box

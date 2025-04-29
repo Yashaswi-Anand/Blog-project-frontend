@@ -34,7 +34,7 @@ const HomeBlog = ({ blog_list }) => {
                 </Typography>
             </Box>
 
-            <Box sx={{ width: "100%", height: "2px", bgcolor: "#007bff", marginBottom: "20px" }} />
+            <Box sx={{ width: "100%", height: "2px", bgcolor: theme.palette.horizontalDivider, marginBottom: "20px" }} />
 
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>

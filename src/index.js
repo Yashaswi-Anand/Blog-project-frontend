@@ -27,6 +27,7 @@ root.render(
 12. Skeleton loading -- done
 13. Fancy & Animated Home page UI --- done
 14. Sitemap - done
-15. Light and Dark Theme
+15. Light and Dark Theme -- done
 16. Google Fonts
+17. List View for desktop on Category page
 */
