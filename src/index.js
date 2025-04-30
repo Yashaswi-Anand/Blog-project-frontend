@@ -29,5 +29,5 @@ root.render(
 14. Sitemap - done
 15. Light and Dark Theme -- done
 16. Google Fonts
-17. List View for desktop on Category page
+17. List View for desktop on Category page & UI
 */
