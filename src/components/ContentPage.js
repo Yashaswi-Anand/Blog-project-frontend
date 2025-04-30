@@ -5,7 +5,7 @@ import ContentSideBlog from '../Widgets/ContentSideBlog';
 
 function ContentPage() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Hide on md and below
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box sx={{ margin: isMobile ? '0px' : '0px 10%' }}>

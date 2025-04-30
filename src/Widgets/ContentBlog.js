@@ -6,6 +6,7 @@ import { blogCategoryByCategory } from '../utils/api';
 import CircularLoading from './fancyWidgets/CircularLoading';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import moment from 'moment/moment';
 
 function ContentBlog({ content_type }) {
     const navigate = useNavigate()
@@ -13,7 +14,8 @@ function ContentBlog({ content_type }) {
     const [isloading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1)
     const pageSize = 5
-    const [total_length, setTotalLength] = useState(0)
+    const [total_length, setTotalLength] = useState(0);
+    // const isMobiFle = useMediaQuery(theme.breakpoints.down('md'));
 
     useEffect(() => {
         setPage(1);
@@ -56,40 +58,42 @@ function ContentBlog({ content_type }) {
                         <CircularLoading />
                     </Box>
                     : <Box>
-                        {content_blog && content_blog.length > 0 && content_blog?.map((news, index) => (
+                        {content_blog && content_blog.length > 0 && content_blog.map((news, index) => (
                             <Card
                                 key={index}
                                 sx={{
                                     display: 'flex',
-                                    flexDirection: 'column', // Always column to keep image on top
+                                    flexDirection: { xs: 'column', md: 'row' }, // Column on mobile, row on desktop
                                     mb: 3,
                                     boxShadow: 3,
                                     borderRadius: 2,
                                     overflow: 'hidden',
+                                    height: { xs: 420, md: 250 },
                                 }}
                             >
-                                {/* Image on top */}
+                                {/* Left Side Image (or Top on Mobile) */}
                                 <CardMedia
                                     component="img"
                                     sx={{
-                                        width: '100%',
-                                        height: { xs: 300, sm: 350, md: 400 }, // Responsive height
-                                        objectFit: 'fit-cover',
+                                        width: { xs: '100%', md: 300 },         // Full width on mobile, fixed width on desktop
+                                        height: { xs: 200, md: '100%' },        // Fixed height on mobile, auto on desktop
+                                        objectFit: 'cover',
                                         cursor: 'pointer',
-                                        ':hover': { color: '#00bcd4' },
+                                        objectPosition: 'center',// Center the crop
+                                        flexShrink: 0
                                     }}
                                     onClick={() => handleNavigationToThatBlog(news)}
                                     image={news.image}
                                     alt={news.title}
                                 />
 
-                                {/* Content */}
+                                {/* Right Side Content (or Bottom on Mobile) */}
                                 <Box
                                     sx={{
                                         display: 'flex',
                                         flexDirection: 'column',
                                         flex: 1,
-                                        p: { xs: 2, sm: 3 }, // Responsive padding
+                                        // p: { xs: 2, sm: 3 },
                                     }}
                                 >
                                     <CardContent sx={{ flex: '1 0 auto' }}>
@@ -97,44 +101,49 @@ function ContentBlog({ content_type }) {
                                             variant="h6"
                                             sx={{
                                                 fontWeight: 'bold',
-                                                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.3rem' }, // Responsive title
+                                                fontSize: { xs: '1rem', sm: '1rem', md: '1.3rem' },
+                                                textAlign: 'justify',
                                             }}
                                         >
                                             {news.title}
                                         </Typography>
+
                                         <Typography
                                             variant="body2"
                                             color="text.secondary"
                                             sx={{
-                                                my: 1,
-                                                fontSize: { xs: '0.75rem', sm: '0.875rem' }, // Responsive meta text
+                                                textAlign: 'end',
+                                                fontSize: { xs: '0.75rem', sm: '0.875rem' },
                                             }}
                                         >
-                                            {news.date}
+                                            {moment(news.date).format('MMMM DD, YYYY')}
                                         </Typography>
+
                                         <div
-                                            style={{
-                                                minHeight: '50px'
-                                            }}
-                                            dangerouslySetInnerHTML={{ __html: news?.description.substring(0, 200) + '...' }} // ✅ Renders HTML content from editor
+                                            style={{ minHeight: '50px', textAlign: 'justify' }}
+                                            dangerouslySetInnerHTML={{ __html: news.description.substring(0, 100) + '...' }}
                                         />
-                                        <Button
-                                            variant="contained"
-                                            size="small"
-                                            onClick={() => handleNavigationToThatBlog(news)}
-                                            sx={{
-                                                backgroundColor: '#00bcd4',
-                                                textTransform: 'none',
-                                                px: 3,
-                                                py: 1,
-                                                fontSize: { xs: '0.75rem', sm: '0.85rem' }, // Responsive button text
-                                                '&:hover': {
-                                                    backgroundColor: '#0097a7',
-                                                },
-                                            }}
-                                        >
-                                            READ MORE
-                                        </Button>
+
+                                        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                            <Button
+                                                variant="contained"
+                                                size="small"
+                                                onClick={() => handleNavigationToThatBlog(news)}
+                                                sx={{
+                                                    // mt: 2,
+                                                    backgroundColor: '#00bcd4',
+                                                    textTransform: 'none',
+                                                    // px: 3,
+                                                    // py: 1,
+                                                    fontSize: { xs: '0.75rem', sm: '0.85rem' },
+                                                    '&:hover': {
+                                                        backgroundColor: '#0097a7',
+                                                    },
+                                                }}
+                                            >
+                                                READ MORE
+                                            </Button>
+                                        </Box>
                                     </CardContent>
                                 </Box>
                             </Card>
