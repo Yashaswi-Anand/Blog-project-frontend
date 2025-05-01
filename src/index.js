@@ -29,5 +29,9 @@ root.render(
 14. Sitemap - done
 15. Light and Dark Theme -- done
 16. Google Fonts
-17. List View for desktop on Category page & UI
+17. List View for desktop on Category page & UI - in progress
+18. Lazy Loading, Suspense -- done
+19. Infinite Scroll 
+20. Suggestion Box
+21. Contact Us using mail
 */

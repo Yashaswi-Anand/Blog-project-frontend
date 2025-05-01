@@ -1,40 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
-import MostViewsBlog from '../Widgets/MostViewsBlog'
-import LatestBlog from '../Widgets/LatestBlog'
-import HomeBlog from '../Widgets/HomeBlog'
 import Socials from '../Widgets/fancyWidgets/Socials'
-import { useState } from 'react'
-import { getBlogList, mostRecentBlogs, mostViewedBlogs } from '../utils/api'
-import ThreeCardShimmer from '../Widgets/skeletons/ThreeCardShimmer'
-import TopStortiesShimmer from '../Widgets/skeletons/TopStoriesSimmer'
+import { useInView } from 'react-intersection-observer';
+import TopStoriesShimmer from '../Widgets/skeletons/TopStoriesSimmer';
+import ThreeCardSimmer from '../Widgets/skeletons/ThreeCardShimmer';
+
+// Lazy load components
+const LatestBlog = lazy(() => import('../Widgets/LatestBlog'));
+const MostViewsBlog = lazy(() => import('../Widgets/MostViewsBlog'));
+const HomeBlog = lazy(() => import('../Widgets/HomeBlog'));
 
 function Home() {
-  const [blog_list, setBlogList] = useState([]);
-  const [most_viewed_blog, setMostViewedBlog] = useState([]);
-  const [latest_blog, setLatestBlog] = useState([]);
-  const [is_loading, setIsLoading] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // <600px
-  useEffect(() => {
-    (async () => {
-      const [all_blogs, most_viewed_blogs, latest_blogs] = await Promise.all([
-        getBlogList(),
-        mostViewedBlogs(),
-        mostRecentBlogs()
-      ]);
-      if (all_blogs?.data?.data) {
-        setBlogList(all_blogs?.data?.data);
-      }
-      if (most_viewed_blogs?.data?.data) {
-        setMostViewedBlog(most_viewed_blogs?.data?.data);
-      }
-      if (latest_blogs?.data?.data) {
-        setLatestBlog(latest_blogs?.data?.data);
-      }
-      setIsLoading(false);
-    })()
-  }, []);
+  const { ref: latestRef, inView: latestInView } = useInView({ triggerOnce: true });
+  const { ref: mostReviewsRef, inView: mostReviewsInView } = useInView({ triggerOnce: true });
+  const { ref: homeBlogRef, inView: homeBlogInView } = useInView({ triggerOnce: true });
+
   return (
     <Box>
       <main >
@@ -42,18 +24,27 @@ function Home() {
         <Socials />
         {/* Pages */}
         <Box sx={{ padding: isMobile ? 2 : 4, margin: isMobile ? "20% 0 0 0" : "3.8% 10% 0 10%", backgroundColor: 'background.paper', zIndex: 1000 }}>
-          {!is_loading && blog_list.length > 0 ?
-            <Box>
-              <HomeBlog blog_list={blog_list} />
-              <MostViewsBlog most_viewed_blog={most_viewed_blog} />
-              <LatestBlog latest_blog_data={latest_blog} />
-            </Box>
-            : <Box>
-              <TopStortiesShimmer blog_list={blog_list}/>
-              <ThreeCardShimmer />
-              <ThreeCardShimmer />
-            </Box>
-          }
+          <Box ref={homeBlogRef}>
+            {homeBlogInView && (
+              <Suspense fallback={<TopStoriesShimmer/>}>
+                <HomeBlog />
+              </Suspense>
+            )}
+          </Box>
+          <Box ref={mostReviewsRef}>
+            {mostReviewsInView && (
+              <Suspense fallback={<ThreeCardSimmer/>}>
+                <MostViewsBlog />
+              </Suspense>
+            )}
+          </Box>
+          <Box ref={latestRef}>
+            {latestInView && (
+              <Suspense fallback={<ThreeCardSimmer/>}>
+                <LatestBlog />
+              </Suspense>
+            )}
+          </Box>
         </Box>
       </main>
     </Box>
