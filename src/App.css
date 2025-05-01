@@ -209,3 +209,7 @@ fs-16 {
 .text-wrap {
   text-wrap-style: balance !important;
 }
+
+.pointer {
+  cursor: pointer !important;
+}

@@ -15,7 +15,6 @@ function ContentBlog({ content_type }) {
     const [page, setPage] = useState(1)
     const pageSize = 5
     const [total_length, setTotalLength] = useState(0);
-    // const isMobiFle = useMediaQuery(theme.breakpoints.down('md'));
 
     useEffect(() => {
         setPage(1);
@@ -64,11 +63,11 @@ function ContentBlog({ content_type }) {
                                 sx={{
                                     display: 'flex',
                                     flexDirection: { xs: 'column', md: 'row' }, // Column on mobile, row on desktop
-                                    mb: 3,
+                                    mb: 1,
                                     boxShadow: 3,
                                     borderRadius: 2,
                                     overflow: 'hidden',
-                                    height: { xs: 420, md: 250 },
+                                    height: { xs: 'auto', md: 200 },
                                 }}
                             >
                                 {/* Left Side Image (or Top on Mobile) */}
@@ -76,8 +75,8 @@ function ContentBlog({ content_type }) {
                                     component="img"
                                     sx={{
                                         width: { xs: '100%', md: 300 },         // Full width on mobile, fixed width on desktop
-                                        height: { xs: 200, md: '100%' },        // Fixed height on mobile, auto on desktop
-                                        objectFit: 'cover',
+                                        height: { xs: 300, md: '100%' },        // Fixed height on mobile, auto on desktop
+                                        objectFit: 'fill !important',
                                         cursor: 'pointer',
                                         objectPosition: 'center',// Center the crop
                                         flexShrink: 0
@@ -94,15 +93,21 @@ function ContentBlog({ content_type }) {
                                         flexDirection: 'column',
                                         flex: 1,
                                         // p: { xs: 2, sm: 3 },
+                                        height:{ xs: 200, md: '100%' },
                                     }}
                                 >
-                                    <CardContent sx={{ flex: '1 0 auto' }}>
+                                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                                         <Typography
                                             variant="h6"
+                                            className='pointer'
                                             sx={{
                                                 fontWeight: 'bold',
-                                                fontSize: { xs: '1rem', sm: '1rem', md: '1.3rem' },
+                                                fontSize: 18,
+                                                fontStyle: 'italic',
                                                 textAlign: 'justify',
+                                                lineHeight: 1.2,
+                                                cursor: 'pointer',
+                                                '&:hover': { color: '#00bcd4' }
                                             }}
                                         >
                                             {news.title}
@@ -120,7 +125,7 @@ function ContentBlog({ content_type }) {
                                         </Typography>
 
                                         <div
-                                            style={{ minHeight: '50px', textAlign: 'justify' }}
+                                            style={{ textAlign: 'justify', fontSize: 14 }}
                                             dangerouslySetInnerHTML={{ __html: news.description.substring(0, 100) + '...' }}
                                         />
 
@@ -130,7 +135,7 @@ function ContentBlog({ content_type }) {
                                                 size="small"
                                                 onClick={() => handleNavigationToThatBlog(news)}
                                                 sx={{
-                                                    // mt: 2,
+                                                    mt: 1,
                                                     backgroundColor: '#00bcd4',
                                                     textTransform: 'none',
                                                     // px: 3,
