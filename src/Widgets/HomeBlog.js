@@ -25,6 +25,7 @@ const HomeBlog = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // <600px
     const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 900px
+    const [shuffledIndices, setShuffledIndices] = useState([0, 1, 2, 3]);
 
     useEffect(() => {
         (async () => {
@@ -35,6 +36,31 @@ const HomeBlog = () => {
             setIsLoading(false);
         })()
     }, []);
+
+    const shuffleArray = (array) => {
+        let newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    };
+    
+    // Shuffle every 2 seconds
+    useEffect(() => {
+        if (blog_list.length < 4) return;
+    
+        const interval = setInterval(() => {
+            setShuffledIndices(shuffleArray([0, 1, 2, 3]));
+        }, 2000);
+    
+        return () => clearInterval(interval);
+    }, [blog_list]);
+
+    const blog0 = blog_list[shuffledIndices[0]];
+    const blog1 = blog_list[shuffledIndices[1]];
+    const blog2 = blog_list[shuffledIndices[2]];
+    const blog3 = blog_list[shuffledIndices[3]];
 
     const navigateBlogPage = (story) => {
         navigate(`/content-detail/${story.category.toLowerCase()}/${story.id}`);
@@ -68,12 +94,12 @@ const HomeBlog = () => {
                                             overflow: 'hidden',
                                             borderRadius: 4,
                                         }}
-                                        onClick={() => navigateBlogPage(blog_list[0])}
+                                        onClick={() => navigateBlogPage(blog0)}
                                     >
                                         <ZoomImage
                                             component="img"
                                             height="100%"
-                                            image={blog_list[0]?.image}
+                                            image={blog0?.image}
                                             alt="Main blog"
                                         />
                                         <CardContent
@@ -86,7 +112,7 @@ const HomeBlog = () => {
                                                 paddingBottom: '5px !important',
                                             }}
                                         >
-                                            <Chip label={blog_list[0]?.category} size="small" color="primary" sx={{ mb: 1 }} />
+                                            <Chip label={blog0?.category} size="small" color="primary" sx={{ mb: 1 }} />
                                             <Typography
                                                 fontSize={isMobile ? 12 : isTablet ? 14 : 16}
                                                 className="text-wrap"
@@ -98,12 +124,12 @@ const HomeBlog = () => {
                                                     },
                                                     textWrap: 'balance'
                                                 }}>
-                                                {blog_list[0]?.title}
+                                                {blog0?.title}
                                             </Typography>
                                             <Box display="flex" justifyContent='end' alignItems="center" mt={1} mr={4}>
                                                 <AccessTime sx={{ width: 20, height: 20, mr: 1 }} />
                                                 <Typography variant="caption">
-                                                    {moment(blog_list[0]?.date).format("MMMM D, YYYY")}
+                                                    {moment(blog0?.date).format("MMMM D, YYYY")}
                                                 </Typography>
                                             </Box>
                                         </CardContent>
@@ -126,12 +152,12 @@ const HomeBlog = () => {
                                                 overflow: 'hidden',
                                                 borderRadius: 4
                                             }}
-                                            onClick={() => navigateBlogPage(blog_list[1])}
+                                            onClick={() => navigateBlogPage(blog1)}
                                         >
                                             <ZoomImage
                                                 component="img"
                                                 height="100%"
-                                                image={blog_list[1]?.image}
+                                                image={blog1?.image}
                                                 alt="Blog 1"
                                             />
                                             <CardContent
@@ -146,11 +172,11 @@ const HomeBlog = () => {
                                                 }}
                                             >
                                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
-                                                    <Chip label={blog_list[1]?.category} color="primary" size="small" />
+                                                    <Chip label={blog1?.category} color="primary" size="small" />
                                                     <Box display="flex" alignItems="center" marginRight={2}>
                                                         <AccessTime sx={{ width: 20, height: 20, mr: 1 }} />
                                                         <Typography variant="caption">
-                                                            {moment(blog_list[1]?.date).format("MMMM D, YYYY")}
+                                                            {moment(blog1?.date).format("MMMM D, YYYY")}
                                                         </Typography>
                                                     </Box>
                                                 </Box>
@@ -164,7 +190,7 @@ const HomeBlog = () => {
                                                         },
                                                         textWrap: 'auto'
                                                     }}>
-                                                    {blog_list[1]?.title}
+                                                    {blog1?.title}
                                                 </Typography>
 
                                             </CardContent>
@@ -187,12 +213,12 @@ const HomeBlog = () => {
                                                     overflow: 'hidden',
                                                     borderRadius: 4
                                                 }}
-                                                onClick={() => navigateBlogPage(blog_list[2])}
+                                                onClick={() => navigateBlogPage(blog2)}
                                             >
                                                 <ZoomImage
                                                     component="img"
                                                     height="100%"
-                                                    image={blog_list[2]?.image}
+                                                    image={blog2?.image}
                                                     alt="Blog 2"
                                                 />
                                                 <CardContent
@@ -207,11 +233,11 @@ const HomeBlog = () => {
                                                     }}
                                                 >
                                                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                        <Chip label={blog_list[1]?.category} color="primary" size="small" />
+                                                        <Chip label={blog1?.category} color="primary" size="small" />
                                                         <Box display="flex" alignItems="center" marginRight={2}>
                                                             <AccessTime sx={{ width: 20, height: 20, mr: 1 }} />
                                                             <Typography variant="caption">
-                                                                {moment(blog_list[1]?.date).format("MMMM D, YYYY")}
+                                                                {moment(blog1?.date).format("MMMM D, YYYY")}
                                                             </Typography>
                                                         </Box>
                                                     </Box>
@@ -226,7 +252,7 @@ const HomeBlog = () => {
                                                             },
                                                             textWrap: 'balance'
                                                         }}>
-                                                        {blog_list[2]?.title.substring(0, 50) + '...'}
+                                                        {blog2?.title.substring(0, 50) + '...'}
                                                     </Typography>
                                                 </CardContent>
                                             </Card>
@@ -246,12 +272,12 @@ const HomeBlog = () => {
                                                     borderRadius: 4,
                                                     overflow: 'hidden',
                                                 }}
-                                                onClick={() => navigateBlogPage(blog_list[3])}
+                                                onClick={() => navigateBlogPage(blog3)}
                                             >
                                                 <ZoomImage
                                                     component="img"
                                                     height="100%"
-                                                    image={blog_list[3]?.image}
+                                                    image={blog3?.image}
                                                     alt="Blog 3"
                                                 />
                                                 <CardContent
@@ -266,11 +292,11 @@ const HomeBlog = () => {
                                                     }}
                                                 >
                                                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                        <Chip label={blog_list[1]?.category} color="primary" size="small" />
+                                                        <Chip label={blog1?.category} color="primary" size="small" />
                                                         <Box display="flex" alignItems="center" marginRight={2}>
                                                             <AccessTime sx={{ width: 20, height: 20, mr: 1 }} />
                                                             <Typography variant="caption">
-                                                                {moment(blog_list[1]?.date).format("MMMM D, YYYY")}
+                                                                {moment(blog1?.date).format("MMMM D, YYYY")}
                                                             </Typography>
                                                         </Box>
                                                     </Box>
@@ -283,7 +309,7 @@ const HomeBlog = () => {
                                                             },
                                                             textWrap: 'balance'
                                                         }}>
-                                                        {blog_list[3]?.title.substring(0, 50)}
+                                                        {blog3?.title.substring(0, 50)}
                                                     </Typography>
                                                 </CardContent>
                                             </Card>

@@ -14,6 +14,7 @@ root.render(
 );
 
 /*
+https://socialriser.com/wp-admin/admin.php?page=hostinger
 1. Pagination -- done
 2. Logo -- done
 3. Privacy Policy -- done
@@ -34,4 +35,5 @@ root.render(
 19. Infinite Scroll 
 20. Suggestion Box
 21. Contact Us using mail
+22. Draft And Publish
 */
