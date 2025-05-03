@@ -52,7 +52,7 @@ const HomeBlog = () => {
     
         const interval = setInterval(() => {
             setShuffledIndices(shuffleArray([0, 1, 2, 3]));
-        }, 2000);
+        }, 5000);
     
         return () => clearInterval(interval);
     }, [blog_list]);
