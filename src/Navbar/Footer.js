@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Typography, Grid, Link, useMediaQuery, useTheme } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import SocialOnFooter from '../Widgets/fancyWidgets/SocialOnFooter';
 
 export default function Footer() {
-  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const footerLinks = ['About Us', 'Contact Us', 'Privacy Policy', 'Terms & Conditions']
@@ -14,7 +12,7 @@ export default function Footer() {
     if (path === 'Contact Us') path = '/contact-us';
     if (path === 'Privacy Policy') path = '/privacy-policy';
     if (path === 'Terms & Conditions') path = '/terms-conditions';
-    navigate(path);
+    return path;
   }
 
   return (
@@ -62,7 +60,9 @@ export default function Footer() {
             </Typography>
             {footerLinks.map((item, index) => (
               <Typography key={index} variant="body2" sx={{ color: '#ccc', mb: 1, '&:hover': { color: '#fff' }, cursor: 'pointer' }}>
-                <Link onClick={() => onHandleNavigate(item)} underline="none" sx={{ color: '#ccc', '&:hover': { color: '#fff' } }}>
+                <Link 
+                href={onHandleNavigate(item)} 
+                underline="none" sx={{ color: '#ccc', '&:hover': { color: '#fff' } }}>
                   {item}
                 </Link>
               </Typography>

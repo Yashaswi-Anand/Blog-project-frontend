@@ -35,5 +35,5 @@ https://socialriser.com/wp-admin/admin.php?page=hostinger
 19. Infinite Scroll 
 20. Suggestion Box
 21. Contact Us using mail
-22. Draft And Publish
+22. Edit, Draft And Publish
 */
