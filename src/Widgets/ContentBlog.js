@@ -15,6 +15,7 @@ function ContentBlog({ content_type }) {
     const [page, setPage] = useState(1)
     const pageSize = 5
     const [total_length, setTotalLength] = useState(0);
+    content_type = content_type || (window.location.pathname.replace(/\/$/, '')).split("/").pop();
 
     useEffect(() => {
         setPage(1);

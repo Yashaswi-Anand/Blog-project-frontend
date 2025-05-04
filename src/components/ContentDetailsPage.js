@@ -13,6 +13,7 @@ const ContentDetailsPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const blog_id = window.location.pathname.split("/").pop();
+  console.log(blog_id, "NNNNNN");
   useEffect(() => {
     setIsLoading(true);
     (async () => {
